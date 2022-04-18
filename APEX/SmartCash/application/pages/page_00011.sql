@@ -1,0 +1,132 @@
+prompt --application/pages/page_00011
+begin
+wwv_flow_imp_page.create_page(
+ p_id=>11
+,p_user_interface_id=>wwv_flow_imp.id(37628517236709248794)
+,p_name=>'Cancel Invoice'
+,p_page_mode=>'MODAL'
+,p_step_title=>'Cancel Invoice'
+,p_autocomplete_on_off=>'OFF'
+,p_page_template_options=>'#DEFAULT#'
+,p_page_component_map=>'17'
+,p_last_updated_by=>'D.KALDI@ME.COM'
+,p_last_upd_yyyymmddhh24miss=>'20191119113238'
+);
+wwv_flow_imp_page.create_page_plug(
+ p_id=>wwv_flow_imp.id(3117052980185191039)
+,p_plug_name=>'Cancel Region'
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_imp.id(37628410661712248714)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'Y'
+,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+,p_attribute_01=>'N'
+,p_attribute_02=>'HTML'
+);
+wwv_flow_imp_page.create_page_button(
+ p_id=>wwv_flow_imp.id(3117053079908191040)
+,p_button_sequence=>10
+,p_button_plug_id=>wwv_flow_imp.id(3117052980185191039)
+,p_button_name=>'Cancel'
+,p_button_action=>'DEFINED_BY_DA'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_imp.id(37628493500667248776)
+,p_button_image_alt=>'Cancel'
+,p_button_position=>'BELOW_BOX'
+,p_button_execute_validations=>'N'
+,p_warn_on_unsaved_changes=>null
+);
+wwv_flow_imp_page.create_page_button(
+ p_id=>wwv_flow_imp.id(3117053115567191041)
+,p_button_sequence=>20
+,p_button_plug_id=>wwv_flow_imp.id(3117052980185191039)
+,p_button_name=>'DeleteBill'
+,p_button_action=>'DEFINED_BY_DA'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_imp.id(37628493500667248776)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Delete Bill'
+,p_button_position=>'BELOW_BOX'
+,p_button_execute_validations=>'N'
+,p_warn_on_unsaved_changes=>null
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(3117052832194191038)
+,p_name=>'P11_CANCEL_REASON'
+,p_item_sequence=>20
+,p_item_plug_id=>wwv_flow_imp.id(3117052980185191039)
+,p_use_cache_before_default=>'NO'
+,p_item_default=>'falsch eingetippt.'
+,p_prompt=>'Cancel Reason'
+,p_display_as=>'NATIVE_TEXTAREA'
+,p_cSize=>30
+,p_cHeight=>5
+,p_field_template=>wwv_flow_imp.id(37628492413368248774)
+,p_item_template_options=>'#DEFAULT#'
+,p_encrypt_session_state_yn=>'N'
+,p_attribute_01=>'Y'
+,p_attribute_02=>'N'
+,p_attribute_03=>'N'
+,p_attribute_04=>'BOTH'
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(3117053246274191042)
+,p_name=>'P11_BID'
+,p_item_sequence=>10
+,p_item_plug_id=>wwv_flow_imp.id(3117052980185191039)
+,p_display_as=>'NATIVE_HIDDEN'
+,p_encrypt_session_state_yn=>'N'
+,p_attribute_01=>'Y'
+);
+wwv_flow_imp_page.create_page_da_event(
+ p_id=>wwv_flow_imp.id(3117053371509191043)
+,p_name=>'Cancel Dialog'
+,p_event_sequence=>10
+,p_triggering_element_type=>'BUTTON'
+,p_triggering_button_id=>wwv_flow_imp.id(3117053079908191040)
+,p_bind_type=>'bind'
+,p_bind_event_type=>'click'
+);
+wwv_flow_imp_page.create_page_da_action(
+ p_id=>wwv_flow_imp.id(3117053436241191044)
+,p_event_id=>wwv_flow_imp.id(3117053371509191043)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_DIALOG_CANCEL'
+);
+wwv_flow_imp_page.create_page_da_event(
+ p_id=>wwv_flow_imp.id(3117053505591191045)
+,p_name=>'Delete Bill'
+,p_event_sequence=>20
+,p_triggering_element_type=>'BUTTON'
+,p_triggering_button_id=>wwv_flow_imp.id(3117053115567191041)
+,p_bind_type=>'bind'
+,p_bind_event_type=>'click'
+);
+wwv_flow_imp_page.create_page_da_action(
+ p_id=>wwv_flow_imp.id(3117053685126191046)
+,p_event_id=>wwv_flow_imp.id(3117053505591191045)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_EXECUTE_PLSQL_CODE'
+,p_attribute_01=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'update sc_bill set canceled = systimestamp , cancel_reason = :P11_CANCEL_REASON where bid = :P11_BID;',
+'Select bid INTO :P11_BID from sc_bill where canceled is null order by "CREATED" DESC fetch first 1 row only;'))
+,p_attribute_03=>'P11_BID'
+,p_attribute_04=>'N'
+,p_attribute_05=>'PLSQL'
+,p_wait_for_result=>'Y'
+);
+wwv_flow_imp_page.create_page_da_action(
+ p_id=>wwv_flow_imp.id(3117053702312191047)
+,p_event_id=>wwv_flow_imp.id(3117053505591191045)
+,p_event_result=>'TRUE'
+,p_action_sequence=>20
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_DIALOG_CLOSE'
+,p_attribute_01=>'P11_BID'
+);
+end;
+/

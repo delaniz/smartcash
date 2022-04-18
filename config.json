@@ -10,7 +10,7 @@
   },
   "modules": [
     "ORDS_API",
-    "public",
+    "public"
   ],
   "flyway": {
     "config": {
