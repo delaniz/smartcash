@@ -1,0 +1,1 @@
+powershell -File .\Scripts\remerge_apex.ps1

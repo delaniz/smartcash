@@ -1,0 +1,39 @@
+{
+  "base_url": "https://apex.oracle.com/pls/apex/f?p=4967212",
+  "app_name": "SmartCash",
+  "app_id": 201,
+  "workspace": "FRT-APEX",
+  "apex_export_options": {
+    "supporting_objects": false,
+    "ir_private_reports": true,
+    "ir_public_reports": true
+  },
+  "modules": [
+    "ORDS_API",
+    "public",
+  ],
+  "flyway": {
+    "config": {
+      "locations": "filesystem:./migrations/",
+      "baselineOnMigrate": true,
+      "validateOnMigrate": true
+    }
+  },
+  "jenkins": {
+    "credentialsId": "macdnz",
+    "errorFilter": "%",
+    "targets": {
+      "dev": {
+        "database": "smartcash-dev",
+        "runTests": false,
+        "websocketChannel": "OMS_ENDURT4"
+      },
+      "master": {
+        "database": "smartcash",
+        "runTests": false,
+        "websocketChannel": "OMS_ENDUR"
+      }
+    }
+  },
+  "tool_version": "1.1.1"
+}
