@@ -19,7 +19,7 @@ begin
 '</DOCUMENT>'||wwv_flow.LF||
 '';
 wwv_flow_imp_shared.create_report_layout(
- p_id=>wwv_flow_imp.id(10873377930798653307)
+ p_id=>wwv_flow_imp.id(10871975415812190648)
 ,p_report_layout_name=>'daily_invoice'
 ,p_report_layout_type=>'RTF_FILE'
 ,p_varchar2_table=>wwv_flow_imp.g_varchar2_table

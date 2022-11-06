@@ -2,11 +2,11 @@ prompt --application/pages/page_00009
 begin
 wwv_flow_imp_page.create_page(
  p_id=>9
-,p_user_interface_id=>wwv_flow_imp.id(37628517236709248794)
-,p_name=>'Invoice'
-,p_step_title=>'Invoice'
+,p_user_interface_id=>wwv_flow_imp.id(37627114721722786135)
+,p_name=>'Cash Register'
+,p_step_title=>'Cash Register'
 ,p_autocomplete_on_off=>'OFF'
-,p_javascript_file_urls=>'#APP_FILES#jquery.easing.min.js'
+,p_javascript_file_urls=>'https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js'
 ,p_javascript_code=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'var counter = 0;',
 'var lastSeenCartItem = "";',
@@ -23,6 +23,7 @@ unistr('        $("#right p").html("\20AC 0.00");'),
 '        $("#total-container .u-success").hide();',
 '        $("#discount-but").attr(''disabled'',true);',
 '        $s("P9_DISCOUNT",""); $s("SHOPPINGCART","");',
+'        $(".discount_div").hide();',
 '        saveData();',
 '}',
 'function customConfirm( pMessage, pCallback, pOkLabel, pCancelLabel ){',
@@ -43,7 +44,7 @@ unistr('        $("#right p").html("\20AC 0.00");'),
 'function sumTotal(){',
 '    var total = 0;',
 '    $(".t-MediaList-badge").each(function(){',
-unistr('        total += parseFloat($(this).html().replace("\20AC",""));'),
+unistr('        total += parseFloat($(this).html().replace("\20AC","").replace('','',''.''));'),
 '    });',
 '    console.log("in total->"+total);',
 '    if(total==0){',
@@ -51,8 +52,8 @@ unistr('        total += parseFloat($(this).html().replace("\20AC",""));'),
 '        $("#discount-but").attr(''disabled'',true);',
 '    }',
 '',
-unistr('    $("#right p").last().html("\20AC "+total.toFixed(2));'),
-unistr('     $("#right p").first().html("\20AC "+total.toFixed(2));'),
+unistr('    $("#right p").last().html("\20AC "+total.toFixed(2).toString().replace(''.'','',''));'),
+unistr('     //$("#right p").first().html("\20AC "+total.toFixed(2));'),
 '    ',
 '   ',
 '    calculateDiscount();',
@@ -61,7 +62,7 @@ unistr('     $("#right p").first().html("\20AC "+total.toFixed(2));'),
 '}',
 'function addItem(id,qnt,name,price,img){',
 '    console.log("in Additems ->"+id);',
-'    ',
+'    var price = parseFloat(price.toString().replace('','',''.''));',
 '    var obj = $(".t-Card-info:contains(''#"+id+"'')").parent().parent().parent().parent();',
 '    var imgtodrag = $("#articleDiv img[data-id="+id+"]").length? $("#articleDiv img[data-id="+id+"]").eq(0):img;',
 '    var cart = counter==0?$("#shoppingCartList"):$(''#shoppingCartList li'').last();',
@@ -100,10 +101,11 @@ unistr('      //  var unit_net = parseFloat(obj.find(''.t-Card-initials'').html(
 '            console.log("in same article..counter");',
 '            var countTd = $("#shoppingCartList li[data-id="+id+"]");',
 '            var newCount = parseInt(countTd.find(''.cVal'').val())+1;',
+'            var priceTotal = (newCount*price).toFixed(2).toString().replace(''.'','','');',
 '            console.log(countTd.html());',
 '            console.log("--newCount->"+newCount);',
 '            countTd.find(''.cVal'').val(newCount);',
-unistr('            countTd.find(".t-MediaList-badge").html("\20AC "+(newCount*price).toFixed(2));'),
+unistr('            countTd.find(".t-MediaList-badge").html("\20AC "+priceTotal);'),
 '            console.log("--newCount2->"+newCount);',
 '            cart = countTd.parent();',
 '            sumTotal();',
@@ -111,6 +113,7 @@ unistr('            countTd.find(".t-MediaList-badge").html("\20AC "+(newCount*p
 '        }else{ ',
 '            console.log("in different Article...");',
 '            var artObj = new Object( {"id":id,"qnt":qnt,"name":name,"price":price,"img":img});',
+'            var priceTotal = (qnt*price).toFixed(2).toString().replace(''.'','','');',
 '            addedItems.push(artObj);',
 unistr('           // $("#shoppingCart>ul").append("<tr><td>"+article+"<br/>"+unit_net+" \20AC</td><td><span class=''t-Icon fa fa-minus''></span><input value=''1'' style=''width:30px'' class=''cVal'' /><span class=''t-Icon fa fa-plus''></span></td><td>"+unit_net+" \20AC</td><')
 ||'/tr>");',
@@ -121,7 +124,7 @@ unistr('           // $("#shoppingCart>ul").append("<tr><td>"+article+"<br/>"+un
 unistr('                                         +''<div class="t-MediaList-body"><h3 class="t-MediaList-title">''+name+'' </h3><p class="t-MediaList-desc">\20AC ''+price+''</p></div>'''),
 '                                         +''<div class="input-increment">''',
 '                  +"<span class=''minus''>-</span><input value="+qnt+" style=''width:30px'' class=''cVal'' /><span class=''plus''>+</span></div>"',
-unistr('              +''<div class="t-MediaList-badgeWrap" style="position:relative;"><span class="t-MediaList-badge" style="margin:0px;">\20AC ''+(price*qnt).toFixed(2)+''</span>'''),
+unistr('              +''<div class="t-MediaList-badgeWrap" style="position:relative;"><span class="t-MediaList-badge" style="margin:0px;">\20AC ''+priceTotal+''</span>'''),
 '                                                       +''<div class="fa fa-trash" style="position:absolute;bottom:5px;right:0px;text-align:right;font-size:25px;cursor:pointer;"></div></div></li>'').hide().fadeIn());',
 '                sumTotal();',
 '            },500);',
@@ -199,7 +202,7 @@ unistr('              +''<div class="t-MediaList-badgeWrap" style="position:rela
 '                });*/',
 '                console.log("scrollheight->"+h+"__"+ addedItems.findIndex(o=>o.id===id));',
 '                console.log(addedItems);',
-'                $("#shoppingCartList").animate({ scrollTop: h-100 }, 500);',
+'                $("#shoppingCartList").animate({ scrollTop: h }, 500);',
 '                /*$("#shoppingCartList li[attr="+id+"]").effect("shake", {',
 '                    times: 2',
 '                }, 200);*/',
@@ -229,8 +232,8 @@ unistr('              +''<div class="t-MediaList-badgeWrap" style="position:rela
 '   ',
 '    apex.server.process(''SAVE_CART'',',
 '                        {x01: $v(''P9_SHOPPINGCART''),',
-'                         x02: $v(''P9_DISCOUNT'')',
-'                       ',
+'                         x02: $v(''P9_DISCOUNT''),',
+'                         x03: 1',
 '                         },{dataType: ''text''});',
 '}',
 'function calculateDiscount(){',
@@ -239,14 +242,19 @@ unistr('              +''<div class="t-MediaList-badgeWrap" style="position:rela
 '        console.log("new val ->"+val);',
 '        if(val.indexOf("%")!=-1){',
 '            $("#discount_type").html(" "+val);',
-unistr('            val = parseFloat(val.replace("%",""))*(parseFloat($("#right p").first().html().replace("\20AC",""))/100);'),
+unistr('            val = parseFloat(val.replace("%",""))*(parseFloat($("#right p").last().html().replace("\20AC",""))/100);'),
 '        }else{',
 '            $("#discount_type").html("");',
 unistr('            val = parseFloat(val.replace("\20AC",""));'),
 '        }',
-unistr('        $("#right .u-success-text").html("\20AC -"+val.toFixed(2));'),
-unistr('        $("#right p").last().html("\20AC "+(parseFloat($("#right p").first().html().replace("\20AC",""))-val).toFixed(2));'),
+unistr('        var total = parseFloat($("#right p").last().html().replace("\20AC",""));'),
+'        var newTotal = (total-val.toFixed(2)).toFixed(2).toString().replace(''.'','','');',
+unistr('        $("#right .u-success-text").html("\20AC -"+val.toFixed(2).toString().replace(''.'','',''));'),
+unistr('        $("#right p").last().html("\20AC "+newTotal);'),
 unistr('        //$("#right p").first().html("\20AC "+(parseFloat($("#right p").last().html().replace("\20AC",""))-val).toFixed(2));'),
+'         $(".discount_div").show();',
+'    }else{',
+'        $(".discount_div").hide();',
 '    }',
 '     saveData();',
 '}',
@@ -265,7 +273,11 @@ unistr('        //$("#right p").first().html("\20AC "+(parseFloat($("#right p").
 ' ',
 'function parseNumeric(v) {',
 '  //strip any non-numeric characters and return a non-null numeric value',
-'  return parseFloat(v.replace(/[^\d.-]/g,''''))||0;',
+'  return parseFloat(v.replace(/[^\d.,-]/g,'''').replace('','',''.''))||0;',
+'}',
+'function parseFloatDE(v) {',
+'  //convert any dot separated float number to comma separated number (german reading)',
+'  return v.toString().replace(/[^\d.,]/g,'''').replace(''.'','','');',
 '}',
 ' ',
 '$(document).ready(function() {',
@@ -274,7 +286,46 @@ unistr('        //$("#right p").first().html("\20AC "+(parseFloat($("#right p").
 '    var i = "#"+$(this).attr("id"), v = $(i).val();',
 '    if(v){ $(i).val( parseNumeric(v).formatMoney() ); }',
 '  });',
-'});'))
+'});',
+'',
+'function save_invoice(payment){',
+'    var items = [];',
+'',
+'',
+'    $(".t-MediaList-item").each(function(){',
+'        var item = new Object();',
+'        item.id = $(this).data(''id'');',
+'        item.qnt = $(this).find(".cVal").val();',
+unistr('        item.prc = parseFloatDE($(this).find(".t-MediaList-badge").html()); //.replace("\20AC","").replace(" ","").replace('','',''.'');'),
+'        items.push(item);',
+'    });',
+'',
+'    console.log("all items -> %o",items);',
+'',
+'    apex.server.process(',
+'          ''CREATE_BILLITEM'',',
+'          {',
+'              x01: JSON.stringify({Items : items}),',
+unistr('              x02: $("#right p").last().html().replace("\20AC",""),'),
+'              x03: parseFloatDE($("#right .u-success-text").html()),',
+'              x04: payment',
+'          },',
+'          {',
+'            dataType: ''json'',',
+'            success: function(data) {',
+'                if (data.result == ''success'') {',
+'                ',
+'                    $(".u-Processing").hide();',
+'              ',
+'                    apex.message.showPageSuccess( "Invoice saved!" );',
+'                    resetCart();',
+'                } else {',
+'                    alert(''Oops! Something went terribly wrong. Please try again or contact your application administrator.'');',
+'                }',
+'            }',
+' });',
+'',
+' }'))
 ,p_javascript_code_onload=>wwv_flow_string.join(wwv_flow_t_varchar2(
 '$("#articleDiv").css("height",$("#shoppingCart").height());',
 '$("#P9_SEARCH").parent().prepend("<div id=''toggles'' style=''width:200px;margin-right:150px;''>"+$(".toggle").parent().html()+"</div>");',
@@ -390,14 +441,14 @@ unistr('        //$("#right p").first().html("\20AC "+(parseFloat($("#right p").
 '			'))
 ,p_page_template_options=>'#DEFAULT#'
 ,p_page_component_map=>'03'
-,p_last_updated_by=>'D.KALDI@ME.COM'
-,p_last_upd_yyyymmddhh24miss=>'20220414144939'
+,p_last_updated_by=>'MACDENIZ'
+,p_last_upd_yyyymmddhh24miss=>'20220717185308'
 );
 wwv_flow_imp_page.create_report_region(
- p_id=>wwv_flow_imp.id(37834346166500066003)
-,p_name=>'Articles'
+ p_id=>wwv_flow_imp.id(37832943651513603344)
+,p_name=>'Products'
 ,p_region_name=>'articleDiv'
-,p_template=>wwv_flow_imp.id(37628436464620248733)
+,p_template=>wwv_flow_imp.id(37627033949633786074)
 ,p_display_sequence=>30
 ,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
 ,p_component_template_options=>'#DEFAULT#:u-colors:t-Cards--compact:t-Cards--displayInitials:t-Cards--4cols:t-Cards--iconsRounded:t-Cards--animColorFill'
@@ -405,27 +456,26 @@ wwv_flow_imp_page.create_report_region(
 ,p_source_type=>'NATIVE_SQL_REPORT'
 ,p_query_type=>'SQL'
 ,p_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'select 9999999 freq,0 AID,''NEW ARTICLE?'' CARD_TITLE, ',
+'select 9999999 freq,0 AID,''New Product?'' CARD_TITLE, ',
 '        ''+'' CARD_INITIALS,',
-'        ''<h3><img style="display:none" data-id=0 />Click Here To Add A New Article!</h3>'' CARD_TEXT,',
+'        ''<h3><img style="display:none" data-id=0 />Click Here To Add A New Product!</h3>'' CARD_TEXT,',
 '        ''#'' CARD_LINK,',
 '        ''#0'' CARD_SUBTEXT from dual',
 'UNION',
-'select  freq,AID,name CARD_TITLE, ',
-unistr('        TO_CHAR(price)||''\20AC'' CARD_INITIALS,'),
-'        ''<img data-id=''||AID||'' src=f?p=&APP_ID.:0:&APP_SESSION.:APPLICATION_PROCESS=GETIMAGE:::FILE_ID:''||IMG_ID||'' height=70 width=70 />'' CARD_TEXT,',
+'select  freq',
+'        ,ID',
+'        ,name CARD_TITLE ',
+unistr('        ,''\20AC ''||TO_CHAR(price,V(''CURRENCYFORMAT'')) CARD_INITIALS,'),
+'        ''<img data-id=''||ID||'' src=f?p=&APP_ID.:0:&APP_SESSION.:APPLICATION_PROCESS=GETIMAGE:::FILE_ID:''||IMG_ID||'' height=70 width=70 />'' CARD_TEXT,',
 '      ',
 '       ''#'' CARD_LINK,',
-'       ''#''||AID CARD_SUBTEXT  ',
-'from sc_article a ',
-'where (:P9_SEARCH is null OR upper(name) like ''%''||upper(:P9_SEARCH)||''%'') ',
-'       AND (:P9_CATEGORY is null ',
-'            OR tax_id = (select tid from sc_tax where name = :P9_CATEGORY))',
+'       ''#''||ID CARD_SUBTEXT  ',
+'from sc_article a where (:P9_SEARCH is null or upper(name) like ''%''||upper(:P9_SEARCH)||''%'') and (:P9_CATEGORY is null OR tax_id = :P9_CATEGORY)',
 'order by freq desc;'))
 ,p_ajax_enabled=>'Y'
 ,p_ajax_items_to_submit=>'P9_CATEGORY,P9_SEARCH'
 ,p_lazy_loading=>false
-,p_query_row_template=>wwv_flow_imp.id(37628452748078248745)
+,p_query_row_template=>wwv_flow_imp.id(37627050233091786086)
 ,p_query_num_rows=>100
 ,p_query_options=>'DERIVED_REPORT_COLUMNS'
 ,p_query_show_nulls_as=>'-'
@@ -437,7 +487,7 @@ unistr('        TO_CHAR(price)||''\20AC'' CARD_INITIALS,'),
 ,p_plug_query_strip_html=>'N'
 );
 wwv_flow_imp_page.create_report_columns(
- p_id=>wwv_flow_imp.id(3117052358561191033)
+ p_id=>wwv_flow_imp.id(3115649843574728374)
 ,p_query_column_id=>1
 ,p_column_alias=>'FREQ'
 ,p_column_display_sequence=>7
@@ -446,7 +496,7 @@ wwv_flow_imp_page.create_report_columns(
 ,p_derived_column=>'N'
 );
 wwv_flow_imp_page.create_report_columns(
- p_id=>wwv_flow_imp.id(971218910719734216)
+ p_id=>wwv_flow_imp.id(969816395733271557)
 ,p_query_column_id=>2
 ,p_column_alias=>'AID'
 ,p_column_display_sequence=>6
@@ -456,7 +506,7 @@ wwv_flow_imp_page.create_report_columns(
 ,p_include_in_export=>'Y'
 );
 wwv_flow_imp_page.create_report_columns(
- p_id=>wwv_flow_imp.id(37834346701211066009)
+ p_id=>wwv_flow_imp.id(37832944186224603350)
 ,p_query_column_id=>3
 ,p_column_alias=>'CARD_TITLE'
 ,p_column_display_sequence=>1
@@ -466,7 +516,7 @@ wwv_flow_imp_page.create_report_columns(
 ,p_include_in_export=>'Y'
 );
 wwv_flow_imp_page.create_report_columns(
- p_id=>wwv_flow_imp.id(37834347307641066015)
+ p_id=>wwv_flow_imp.id(37832944792654603356)
 ,p_query_column_id=>4
 ,p_column_alias=>'CARD_INITIALS'
 ,p_column_display_sequence=>5
@@ -479,7 +529,7 @@ wwv_flow_imp_page.create_report_columns(
 ,p_include_in_export=>'Y'
 );
 wwv_flow_imp_page.create_report_columns(
- p_id=>wwv_flow_imp.id(37834346926609066011)
+ p_id=>wwv_flow_imp.id(37832944411622603352)
 ,p_query_column_id=>5
 ,p_column_alias=>'CARD_TEXT'
 ,p_column_display_sequence=>3
@@ -490,7 +540,7 @@ wwv_flow_imp_page.create_report_columns(
 ,p_include_in_export=>'Y'
 );
 wwv_flow_imp_page.create_report_columns(
- p_id=>wwv_flow_imp.id(37834346867039066010)
+ p_id=>wwv_flow_imp.id(37832944352052603351)
 ,p_query_column_id=>6
 ,p_column_alias=>'CARD_LINK'
 ,p_column_display_sequence=>2
@@ -500,7 +550,7 @@ wwv_flow_imp_page.create_report_columns(
 ,p_include_in_export=>'Y'
 );
 wwv_flow_imp_page.create_report_columns(
- p_id=>wwv_flow_imp.id(37834347299422066014)
+ p_id=>wwv_flow_imp.id(37832944784435603355)
 ,p_query_column_id=>7
 ,p_column_alias=>'CARD_SUBTEXT'
 ,p_column_display_sequence=>4
@@ -510,114 +560,182 @@ wwv_flow_imp_page.create_report_columns(
 ,p_include_in_export=>'Y'
 );
 wwv_flow_imp_page.create_page_plug(
- p_id=>wwv_flow_imp.id(37843790952225235331)
+ p_id=>wwv_flow_imp.id(37842388437238772672)
 ,p_plug_name=>'Cash'
 ,p_region_template_options=>'#DEFAULT#:t-BreadcrumbRegion--useBreadcrumbTitle'
 ,p_component_template_options=>'#DEFAULT#'
-,p_plug_template=>wwv_flow_imp.id(37628446026907248739)
+,p_plug_template=>wwv_flow_imp.id(37627043511920786080)
 ,p_plug_display_sequence=>10
 ,p_plug_display_point=>'REGION_POSITION_01'
-,p_menu_id=>wwv_flow_imp.id(37628385115013248693)
+,p_menu_id=>wwv_flow_imp.id(37626982600026786034)
 ,p_plug_source_type=>'NATIVE_BREADCRUMB'
-,p_menu_template_id=>wwv_flow_imp.id(37628494900592248777)
+,p_menu_template_id=>wwv_flow_imp.id(37627092385605786118)
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
 );
 wwv_flow_imp_page.create_page_plug(
- p_id=>wwv_flow_imp.id(37888816862061084806)
-,p_plug_name=>'Shopping Cart'
+ p_id=>wwv_flow_imp.id(37887414347074622147)
+,p_plug_name=>'New Invoice'
 ,p_region_name=>'shoppingCart'
 ,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
-,p_plug_template=>wwv_flow_imp.id(37628436464620248733)
+,p_plug_template=>wwv_flow_imp.id(37627033949633786074)
 ,p_plug_display_sequence=>10
 ,p_plug_new_grid_row=>false
-,p_plug_grid_column_span=>5
+,p_plug_grid_column_span=>4
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
 ,p_attribute_01=>'N'
 ,p_attribute_02=>'HTML'
 );
 wwv_flow_imp_page.create_page_button(
- p_id=>wwv_flow_imp.id(37834348018593066022)
-,p_button_sequence=>20
-,p_button_plug_id=>wwv_flow_imp.id(37888816862061084806)
-,p_button_name=>'charge'
-,p_button_static_id=>'chargeBut'
+ p_id=>wwv_flow_imp.id(1345703651188509)
+,p_button_sequence=>10
+,p_button_plug_id=>wwv_flow_imp.id(37887414347074622147)
+,p_button_name=>'coupon_payment'
+,p_button_static_id=>'coupon_but'
 ,p_button_action=>'DEFINED_BY_DA'
-,p_button_template_options=>'#DEFAULT#:t-Button--large:t-Button--success:t-Button--pill:t-Button--gapLeft:t-Button--gapRight'
-,p_button_template_id=>wwv_flow_imp.id(37628493500667248776)
-,p_button_is_hot=>'Y'
-,p_button_image_alt=>'Charge'
+,p_button_template_options=>'#DEFAULT#:t-Button--iconLeft:t-Button--hoverIconPush'
+,p_button_template_id=>wwv_flow_imp.id(37627091174184786117)
+,p_button_image_alt=>'Coupon'
 ,p_button_position=>'CHANGE'
 ,p_button_execute_validations=>'N'
 ,p_warn_on_unsaved_changes=>null
+,p_icon_css_classes=>'fa-newspaper-o'
 );
 wwv_flow_imp_page.create_page_button(
- p_id=>wwv_flow_imp.id(37888819548923084833)
-,p_button_sequence=>40
-,p_button_plug_id=>wwv_flow_imp.id(37888816862061084806)
-,p_button_name=>'cancel'
+ p_id=>wwv_flow_imp.id(1345766699188510)
+,p_button_sequence=>20
+,p_button_plug_id=>wwv_flow_imp.id(37887414347074622147)
+,p_button_name=>'card_payment'
+,p_button_static_id=>'card_but'
 ,p_button_action=>'DEFINED_BY_DA'
-,p_button_template_options=>'#DEFAULT#:t-Button--large:t-Button--danger'
-,p_button_template_id=>wwv_flow_imp.id(37628493500667248776)
-,p_button_image_alt=>'Cancel'
-,p_button_position=>'CLOSE'
+,p_button_template_options=>'#DEFAULT#:t-Button--iconLeft:t-Button--hoverIconPush'
+,p_button_template_id=>wwv_flow_imp.id(37627091174184786117)
+,p_button_image_alt=>'Card'
+,p_button_position=>'CHANGE'
 ,p_button_execute_validations=>'N'
 ,p_warn_on_unsaved_changes=>null
+,p_icon_css_classes=>'fa-credit-card'
+,p_button_cattributes=>'style=''margin-right:5px'''
 );
 wwv_flow_imp_page.create_page_button(
- p_id=>wwv_flow_imp.id(37888819456880084832)
+ p_id=>wwv_flow_imp.id(37832945503606603363)
+,p_button_sequence=>40
+,p_button_plug_id=>wwv_flow_imp.id(37887414347074622147)
+,p_button_name=>'cash_payment'
+,p_button_static_id=>'cash_but'
+,p_button_action=>'DEFINED_BY_DA'
+,p_button_template_options=>'#DEFAULT#:t-Button--success:t-Button--iconLeft:t-Button--hoverIconPush'
+,p_button_template_id=>wwv_flow_imp.id(37627091174184786117)
+,p_button_image_alt=>'Cash'
+,p_button_position=>'CHANGE'
+,p_button_execute_validations=>'N'
+,p_warn_on_unsaved_changes=>null
+,p_icon_css_classes=>'fa-eur'
+,p_button_cattributes=>'style=''margin-right:5px'''
+);
+wwv_flow_imp_page.create_page_button(
+ p_id=>wwv_flow_imp.id(37887417033936622174)
+,p_button_sequence=>10
+,p_button_plug_id=>wwv_flow_imp.id(37887414347074622147)
+,p_button_name=>'cancel'
+,p_button_action=>'DEFINED_BY_DA'
+,p_button_template_options=>'#DEFAULT#:t-Button--danger:t-Button--iconLeft:t-Button--hoverIconPush'
+,p_button_template_id=>wwv_flow_imp.id(37627091174184786117)
+,p_button_image_alt=>'Cancel'
+,p_button_position=>'DELETE'
+,p_button_execute_validations=>'N'
+,p_warn_on_unsaved_changes=>null
+,p_icon_css_classes=>'fa-remove'
+);
+wwv_flow_imp_page.create_page_button(
+ p_id=>wwv_flow_imp.id(784005756483008)
 ,p_button_sequence=>30
-,p_button_plug_id=>wwv_flow_imp.id(37888816862061084806)
+,p_button_plug_id=>wwv_flow_imp.id(37887414347074622147)
+,p_button_name=>'park_invoice'
+,p_button_static_id=>'park_but'
+,p_button_action=>'DEFINED_BY_DA'
+,p_button_template_options=>'#DEFAULT#:t-Button--warning:t-Button--iconLeft:t-Button--hoverIconPush'
+,p_button_template_id=>wwv_flow_imp.id(37627091174184786117)
+,p_button_image_alt=>'Park'
+,p_button_position=>'DELETE'
+,p_button_execute_validations=>'N'
+,p_warn_on_unsaved_changes=>null
+,p_icon_css_classes=>'fa-thumb-tack'
+,p_button_cattributes=>'style=''margin-right:5px'''
+);
+wwv_flow_imp_page.create_page_button(
+ p_id=>wwv_flow_imp.id(37887416941893622173)
+,p_button_sequence=>40
+,p_button_plug_id=>wwv_flow_imp.id(37887414347074622147)
 ,p_button_name=>'discount'
 ,p_button_static_id=>'discount-but'
-,p_button_action=>'DEFINED_BY_DA'
-,p_button_template_options=>'#DEFAULT#:t-Button--large'
-,p_button_template_id=>wwv_flow_imp.id(37628493500667248776)
+,p_button_action=>'REDIRECT_PAGE'
+,p_button_template_options=>'#DEFAULT#:t-Button--iconLeft:t-Button--hoverIconPush'
+,p_button_template_id=>wwv_flow_imp.id(37627091174184786117)
 ,p_button_image_alt=>'Discount'
-,p_button_position=>'HELP'
-,p_warn_on_unsaved_changes=>null
+,p_button_position=>'DELETE'
+,p_button_redirect_url=>'f?p=&APP_ID.:12:&SESSION.::&DEBUG.:CR,12:P12_DISCOUNT_CAT,P12_DISCOUNT_VALUE:&P9_DISCOUNT_CAT.,&P9_DISCOUNT.'
+,p_icon_css_classes=>'fa-percent'
 );
 wwv_flow_imp_page.create_page_button(
- p_id=>wwv_flow_imp.id(37888821289728084850)
+ p_id=>wwv_flow_imp.id(37887418774741622191)
 ,p_button_sequence=>10
-,p_button_plug_id=>wwv_flow_imp.id(37834346166500066003)
+,p_button_plug_id=>wwv_flow_imp.id(37832943651513603344)
 ,p_button_name=>'food'
 ,p_button_action=>'DEFINED_BY_DA'
 ,p_button_template_options=>'#DEFAULT#'
-,p_button_template_id=>wwv_flow_imp.id(37628493500667248776)
+,p_button_template_id=>wwv_flow_imp.id(37627090985680786117)
 ,p_button_image_alt=>'Food'
 ,p_button_position=>'TEMPLATE_DEFAULT'
 ,p_warn_on_unsaved_changes=>null
 ,p_button_css_classes=>'toggle'
-,p_button_cattributes=>'attr=''food'''
+,p_button_cattributes=>'attr=''1'''
 );
 wwv_flow_imp_page.create_page_button(
- p_id=>wwv_flow_imp.id(37888821137107084849)
+ p_id=>wwv_flow_imp.id(37887418622120622190)
 ,p_button_sequence=>20
-,p_button_plug_id=>wwv_flow_imp.id(37834346166500066003)
+,p_button_plug_id=>wwv_flow_imp.id(37832943651513603344)
 ,p_button_name=>'drinks'
 ,p_button_action=>'DEFINED_BY_DA'
 ,p_button_template_options=>'#DEFAULT#'
-,p_button_template_id=>wwv_flow_imp.id(37628493500667248776)
+,p_button_template_id=>wwv_flow_imp.id(37627090985680786117)
 ,p_button_image_alt=>'Drinks'
 ,p_button_position=>'TEMPLATE_DEFAULT'
 ,p_warn_on_unsaved_changes=>null
 ,p_button_css_classes=>'toggle'
-,p_button_cattributes=>'attr=''drinks'''
+,p_button_cattributes=>'attr=''2'''
 );
 wwv_flow_imp_page.create_page_item(
- p_id=>wwv_flow_imp.id(971217647672734203)
-,p_name=>'P9_CATEGORY'
-,p_item_sequence=>20
-,p_item_plug_id=>wwv_flow_imp.id(37843790952225235331)
+ p_id=>wwv_flow_imp.id(1182036776520471)
+,p_name=>'P9_DISCOUNT_VALUE'
+,p_item_sequence=>90
+,p_item_plug_id=>wwv_flow_imp.id(37842388437238772672)
 ,p_display_as=>'NATIVE_HIDDEN'
 ,p_encrypt_session_state_yn=>'N'
 ,p_attribute_01=>'Y'
 );
 wwv_flow_imp_page.create_page_item(
- p_id=>wwv_flow_imp.id(971218164144734208)
+ p_id=>wwv_flow_imp.id(1182054665520472)
+,p_name=>'P9_DISCOUNT_CAT'
+,p_item_sequence=>100
+,p_item_plug_id=>wwv_flow_imp.id(37842388437238772672)
+,p_display_as=>'NATIVE_HIDDEN'
+,p_encrypt_session_state_yn=>'N'
+,p_attribute_01=>'Y'
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(969815132686271544)
+,p_name=>'P9_CATEGORY'
+,p_item_sequence=>20
+,p_item_plug_id=>wwv_flow_imp.id(37842388437238772672)
+,p_display_as=>'NATIVE_HIDDEN'
+,p_encrypt_session_state_yn=>'N'
+,p_attribute_01=>'Y'
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(969815649158271549)
 ,p_name=>'P9_URL_FOOD'
 ,p_item_sequence=>30
-,p_item_plug_id=>wwv_flow_imp.id(37843790952225235331)
+,p_item_plug_id=>wwv_flow_imp.id(37842388437238772672)
 ,p_source=>'apex_util.prepare_url(''f?p=&APP_ID.:5:&SESSION.::NO:RP:P5_TAX_ID:1'',p_checksum_type => ''SESSION'',p_triggering_element => ''$("#articleDiv")'')'
 ,p_source_type=>'EXPRESSION'
 ,p_source_language=>'PLSQL'
@@ -626,19 +744,19 @@ wwv_flow_imp_page.create_page_item(
 ,p_attribute_01=>'Y'
 );
 wwv_flow_imp_page.create_page_item(
- p_id=>wwv_flow_imp.id(971218667813734213)
+ p_id=>wwv_flow_imp.id(969816152827271554)
 ,p_name=>'P9_NEW_ARTICLE'
 ,p_item_sequence=>60
-,p_item_plug_id=>wwv_flow_imp.id(37843790952225235331)
+,p_item_plug_id=>wwv_flow_imp.id(37842388437238772672)
 ,p_display_as=>'NATIVE_HIDDEN'
 ,p_encrypt_session_state_yn=>'N'
 ,p_attribute_01=>'Y'
 );
 wwv_flow_imp_page.create_page_item(
- p_id=>wwv_flow_imp.id(971219705179734224)
+ p_id=>wwv_flow_imp.id(969817190193271565)
 ,p_name=>'P9_DISCOUNT_URL'
 ,p_item_sequence=>50
-,p_item_plug_id=>wwv_flow_imp.id(37843790952225235331)
+,p_item_plug_id=>wwv_flow_imp.id(37842388437238772672)
 ,p_source=>'apex_util.prepare_url(''f?p=&APP_ID.:12:&SESSION.::NO:RP'',p_checksum_type => ''SESSION'',p_triggering_element => ''$("#shoppingCart")'')'
 ,p_source_type=>'EXPRESSION'
 ,p_source_language=>'PLSQL'
@@ -647,28 +765,28 @@ wwv_flow_imp_page.create_page_item(
 ,p_attribute_01=>'Y'
 );
 wwv_flow_imp_page.create_page_item(
- p_id=>wwv_flow_imp.id(1961175036163930510)
+ p_id=>wwv_flow_imp.id(1959772521177467851)
 ,p_name=>'P9_SHOPPINGCART'
 ,p_item_sequence=>70
-,p_item_plug_id=>wwv_flow_imp.id(37843790952225235331)
+,p_item_plug_id=>wwv_flow_imp.id(37842388437238772672)
 ,p_display_as=>'NATIVE_HIDDEN'
 ,p_encrypt_session_state_yn=>'N'
 ,p_attribute_01=>'Y'
 );
 wwv_flow_imp_page.create_page_item(
- p_id=>wwv_flow_imp.id(1961175293724930512)
+ p_id=>wwv_flow_imp.id(1959772778738467853)
 ,p_name=>'P9_DISCOUNT'
 ,p_item_sequence=>80
-,p_item_plug_id=>wwv_flow_imp.id(37843790952225235331)
+,p_item_plug_id=>wwv_flow_imp.id(37842388437238772672)
 ,p_display_as=>'NATIVE_HIDDEN'
 ,p_encrypt_session_state_yn=>'N'
 ,p_attribute_01=>'Y'
 );
 wwv_flow_imp_page.create_page_item(
- p_id=>wwv_flow_imp.id(1961176816047930528)
+ p_id=>wwv_flow_imp.id(1959774301061467869)
 ,p_name=>'P9_URL_DRINK'
 ,p_item_sequence=>40
-,p_item_plug_id=>wwv_flow_imp.id(37843790952225235331)
+,p_item_plug_id=>wwv_flow_imp.id(37842388437238772672)
 ,p_source=>'apex_util.prepare_url(''f?p=&APP_ID.:5:&SESSION.::NO:RP:P5_TAX_ID:2'',p_checksum_type => ''SESSION'',p_triggering_element => ''$("#articleDiv")'')'
 ,p_source_type=>'EXPRESSION'
 ,p_source_language=>'PLSQL'
@@ -677,15 +795,15 @@ wwv_flow_imp_page.create_page_item(
 ,p_attribute_01=>'Y'
 );
 wwv_flow_imp_page.create_page_item(
- p_id=>wwv_flow_imp.id(37888819641844084834)
+ p_id=>wwv_flow_imp.id(37887417126857622175)
 ,p_name=>'P9_SEARCH'
 ,p_item_sequence=>10
-,p_item_plug_id=>wwv_flow_imp.id(37834346166500066003)
+,p_item_plug_id=>wwv_flow_imp.id(37832943651513603344)
 ,p_prompt=>'New'
 ,p_placeholder=>'Search...'
 ,p_display_as=>'NATIVE_TEXT_FIELD'
 ,p_cSize=>30
-,p_field_template=>wwv_flow_imp.id(37628492130801248774)
+,p_field_template=>wwv_flow_imp.id(37627089615814786115)
 ,p_item_icon_css_classes=>'fa-search'
 ,p_item_template_options=>'#DEFAULT#:t-Form-fieldContainer--stretchInputs:t-Form-fieldContainer--large'
 ,p_encrypt_session_state_yn=>'N'
@@ -695,15 +813,15 @@ wwv_flow_imp_page.create_page_item(
 ,p_attribute_05=>'BOTH'
 );
 wwv_flow_imp_page.create_page_da_event(
- p_id=>wwv_flow_imp.id(37834347434467066016)
+ p_id=>wwv_flow_imp.id(37832944919480603357)
 ,p_name=>'correctCardPrice'
 ,p_event_sequence=>10
 ,p_bind_type=>'bind'
 ,p_bind_event_type=>'ready'
 );
 wwv_flow_imp_page.create_page_da_action(
- p_id=>wwv_flow_imp.id(37834347521743066017)
-,p_event_id=>wwv_flow_imp.id(37834347434467066016)
+ p_id=>wwv_flow_imp.id(37832945006756603358)
+,p_event_id=>wwv_flow_imp.id(37832944919480603357)
 ,p_event_result=>'TRUE'
 ,p_action_sequence=>10
 ,p_execute_on_page_init=>'N'
@@ -718,8 +836,8 @@ wwv_flow_imp_page.create_page_da_action(
 '$("#shoppingCart").find(".t-Region-body").append(''<ul class="t-MediaList t-MediaList--showIcons t-MediaList--showDesc t-MediaList--showBadges u-colors t-MediaList--stack t-MediaList--large force-fa-lg t-MediaList--iconsRounded" id="shoppingCartList" '
 ||'data-region-id="shoppingCart"></ul>''',
 '                                                 +''<div id="total-container"><div id="row" ><div class="total-text" id="left" >''',
-'                                                 +''<p>Subtotal</p><p class="u-success-text" >Discount<span id="discount_type"></span></p><p>Total</p></div>''',
-unistr('                                                 +''<div id="right"><p>\20AC 0.00</p><p class="u-success-text" >\20AC -00.00</p><p>\20AC 0.00</p></div></div></div>'');'),
+'                                                 +''<p class="u-success-text discount_div" style="display:none">-Discount<span id="discount_type"></span></p><p>Total </p></div>''',
+unistr('                                                 +''<div id="right" style="padding-left:10px"><p class="u-success-text discount_div" style="display:none" > \20AC -00,00 </p><p> \20AC 0,00 </p></div></div></div>'');'),
 '',
 '',
 'console.log("selected value ->"+$v("P9_CATEGORY"));',
@@ -742,8 +860,11 @@ unistr('                                                 +''<div id="right"><p>\
 '    $("#discount-but").attr(''disabled'',true);',
 '}'))
 );
+end;
+/
+begin
 wwv_flow_imp_page.create_page_da_event(
- p_id=>wwv_flow_imp.id(37888816682579084804)
+ p_id=>wwv_flow_imp.id(37887414167592622145)
 ,p_name=>'add item '
 ,p_event_sequence=>20
 ,p_triggering_element_type=>'JQUERY_SELECTOR'
@@ -752,16 +873,16 @@ wwv_flow_imp_page.create_page_da_event(
 ,p_bind_event_type=>'click'
 );
 wwv_flow_imp_page.create_page_da_action(
- p_id=>wwv_flow_imp.id(37888816790097084805)
-,p_event_id=>wwv_flow_imp.id(37888816682579084804)
+ p_id=>wwv_flow_imp.id(37887414275110622146)
+,p_event_id=>wwv_flow_imp.id(37887414167592622145)
 ,p_event_result=>'TRUE'
 ,p_action_sequence=>10
 ,p_execute_on_page_init=>'N'
 ,p_action=>'NATIVE_JAVASCRIPT_CODE'
 ,p_attribute_01=>wwv_flow_string.join(wwv_flow_t_varchar2(
-' var id = $(this.triggeringElement).find("img").data(''id'');',
-unistr(' var price = parseFloat($(this.triggeringElement).find(''.t-Card-initials'').html().replace("\20AC",""));'),
-' var name = $(this.triggeringElement).find(".t-Card-title").html();',
+'var id = $(this.triggeringElement).find("img").data(''id'');',
+unistr('var price = $(this.triggeringElement).find(''.t-Card-initials'').html().replace("\20AC","");'),
+'var name = $(this.triggeringElement).find(".t-Card-title").html();',
 'addItem(id,1,name,price, $(this.triggeringElement).find(".t-Card-desc").html());',
 '$("#total-container .u-success").show();',
 '$("#discount-but").attr(''disabled'',false);',
@@ -769,7 +890,7 @@ unistr(' var price = parseFloat($(this.triggeringElement).find(''.t-Card-initial
 ''))
 );
 wwv_flow_imp_page.create_page_da_event(
- p_id=>wwv_flow_imp.id(37888816939946084807)
+ p_id=>wwv_flow_imp.id(37887414424959622148)
 ,p_name=>'plus button'
 ,p_event_sequence=>30
 ,p_triggering_element_type=>'JQUERY_SELECTOR'
@@ -778,8 +899,8 @@ wwv_flow_imp_page.create_page_da_event(
 ,p_bind_event_type=>'click'
 );
 wwv_flow_imp_page.create_page_da_action(
- p_id=>wwv_flow_imp.id(37888817044671084808)
-,p_event_id=>wwv_flow_imp.id(37888816939946084807)
+ p_id=>wwv_flow_imp.id(37887414529684622149)
+,p_event_id=>wwv_flow_imp.id(37887414424959622148)
 ,p_event_result=>'TRUE'
 ,p_action_sequence=>10
 ,p_execute_on_page_init=>'N'
@@ -796,7 +917,7 @@ unistr('$(this.triggeringElement).parent().next().find("span").html("\20AC "+(to
 'sumTotal();'))
 );
 wwv_flow_imp_page.create_page_da_event(
- p_id=>wwv_flow_imp.id(37888817136067084809)
+ p_id=>wwv_flow_imp.id(37887414621080622150)
 ,p_name=>'minus button'
 ,p_event_sequence=>40
 ,p_triggering_element_type=>'JQUERY_SELECTOR'
@@ -805,8 +926,8 @@ wwv_flow_imp_page.create_page_da_event(
 ,p_bind_event_type=>'click'
 );
 wwv_flow_imp_page.create_page_da_action(
- p_id=>wwv_flow_imp.id(37888817245491084810)
-,p_event_id=>wwv_flow_imp.id(37888817136067084809)
+ p_id=>wwv_flow_imp.id(37887414730504622151)
+,p_event_id=>wwv_flow_imp.id(37887414621080622150)
 ,p_event_result=>'TRUE'
 ,p_action_sequence=>10
 ,p_execute_on_page_init=>'N'
@@ -830,7 +951,7 @@ unistr('    $(this.triggeringElement).parent().next().find("span").html((total-(
 'sumTotal();'))
 );
 wwv_flow_imp_page.create_page_da_event(
- p_id=>wwv_flow_imp.id(37888819244208084830)
+ p_id=>wwv_flow_imp.id(37887416729221622171)
 ,p_name=>'quantity input'
 ,p_event_sequence=>50
 ,p_triggering_element_type=>'JQUERY_SELECTOR'
@@ -839,12 +960,9 @@ wwv_flow_imp_page.create_page_da_event(
 ,p_bind_delegate_to_selector=>'#shoppingCart'
 ,p_bind_event_type=>'change'
 );
-end;
-/
-begin
 wwv_flow_imp_page.create_page_da_action(
- p_id=>wwv_flow_imp.id(37888819328599084831)
-,p_event_id=>wwv_flow_imp.id(37888819244208084830)
+ p_id=>wwv_flow_imp.id(37887416813612622172)
+,p_event_id=>wwv_flow_imp.id(37887416729221622171)
 ,p_event_result=>'TRUE'
 ,p_action_sequence=>10
 ,p_execute_on_page_init=>'N'
@@ -859,7 +977,7 @@ unistr('    $(this.triggeringElement).parent().next().find("span").html("\20AC "
 'sumTotal();'))
 );
 wwv_flow_imp_page.create_page_da_event(
- p_id=>wwv_flow_imp.id(37888819763275084835)
+ p_id=>wwv_flow_imp.id(37887417248288622176)
 ,p_name=>'perform search'
 ,p_event_sequence=>60
 ,p_triggering_element_type=>'ITEM'
@@ -870,37 +988,37 @@ wwv_flow_imp_page.create_page_da_event(
 ,p_bind_event_type=>'keypress'
 );
 wwv_flow_imp_page.create_page_da_action(
- p_id=>wwv_flow_imp.id(37888819834796084836)
-,p_event_id=>wwv_flow_imp.id(37888819763275084835)
+ p_id=>wwv_flow_imp.id(37887417319809622177)
+,p_event_id=>wwv_flow_imp.id(37887417248288622176)
 ,p_event_result=>'TRUE'
 ,p_action_sequence=>10
 ,p_execute_on_page_init=>'N'
 ,p_action=>'NATIVE_REFRESH'
 ,p_affected_elements_type=>'REGION'
-,p_affected_region_id=>wwv_flow_imp.id(37834346166500066003)
+,p_affected_region_id=>wwv_flow_imp.id(37832943651513603344)
 );
 wwv_flow_imp_page.create_page_da_action(
- p_id=>wwv_flow_imp.id(37888820134573084839)
-,p_event_id=>wwv_flow_imp.id(37888819763275084835)
+ p_id=>wwv_flow_imp.id(37887417619586622180)
+,p_event_id=>wwv_flow_imp.id(37887417248288622176)
 ,p_event_result=>'TRUE'
 ,p_action_sequence=>20
 ,p_execute_on_page_init=>'N'
 ,p_action=>'NATIVE_CANCEL_EVENT'
 );
 wwv_flow_imp_page.create_page_da_event(
- p_id=>wwv_flow_imp.id(37888820208253084840)
+ p_id=>wwv_flow_imp.id(37887417693266622181)
 ,p_name=>'Reset Cart'
 ,p_event_sequence=>70
 ,p_triggering_element_type=>'BUTTON'
-,p_triggering_button_id=>wwv_flow_imp.id(37888819548923084833)
+,p_triggering_button_id=>wwv_flow_imp.id(37887417033936622174)
 ,p_triggering_condition_type=>'JAVASCRIPT_EXPRESSION'
 ,p_triggering_expression=>'addedItems.length>0'
 ,p_bind_type=>'bind'
 ,p_bind_event_type=>'click'
 );
 wwv_flow_imp_page.create_page_da_action(
- p_id=>wwv_flow_imp.id(1353114107056638601)
-,p_event_id=>wwv_flow_imp.id(37888820208253084840)
+ p_id=>wwv_flow_imp.id(1351711592070175942)
+,p_event_id=>wwv_flow_imp.id(37887417693266622181)
 ,p_event_result=>'TRUE'
 ,p_action_sequence=>10
 ,p_execute_on_page_init=>'N'
@@ -913,79 +1031,49 @@ wwv_flow_imp_page.create_page_da_action(
 '}, "Yes", "No");'))
 );
 wwv_flow_imp_page.create_page_da_event(
- p_id=>wwv_flow_imp.id(37888820457351084842)
+ p_id=>wwv_flow_imp.id(37887417942364622183)
 ,p_name=>'Save Cart'
 ,p_event_sequence=>80
-,p_triggering_element_type=>'BUTTON'
-,p_triggering_button_id=>wwv_flow_imp.id(37834348018593066022)
+,p_triggering_element_type=>'JQUERY_SELECTOR'
+,p_triggering_element=>'#cash_but,#card_but,#coupon_but,#park_but'
 ,p_triggering_condition_type=>'JAVASCRIPT_EXPRESSION'
 ,p_triggering_expression=>'addedItems.length>0'
 ,p_bind_type=>'bind'
 ,p_bind_event_type=>'click'
 );
 wwv_flow_imp_page.create_page_da_action(
- p_id=>wwv_flow_imp.id(37888820507826084843)
-,p_event_id=>wwv_flow_imp.id(37888820457351084842)
+ p_id=>wwv_flow_imp.id(37887417992839622184)
+,p_event_id=>wwv_flow_imp.id(37887417942364622183)
 ,p_event_result=>'TRUE'
 ,p_action_sequence=>10
 ,p_execute_on_page_init=>'N'
 ,p_action=>'NATIVE_JAVASCRIPT_CODE'
 ,p_attribute_01=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'var items = [];',
-'',
-'',
-'$(".t-MediaList-item").each(function(){',
-'    var item = new Object();',
-'    item.id = $(this).data(''id'');',
-'    item.qnt = $(this).find(".cVal").val();',
-unistr('    item.prc = $(this).find(".t-MediaList-badge").html().replace("\20AC","").replace(" ","");'),
-'    items.push(item);',
-'});',
-'',
-'console.log("all items -> %o",items);',
-'',
-'    apex.server.process(',
-'          ''CREATE_BILLITEM'',',
-'          {',
-'              x01: JSON.stringify({Items : items}),',
-unistr('              x02: parseFloat($("#right p").last().html().replace("\20AC","")),'),
-unistr('              x03: Math.abs(parseFloat($("#right .u-success-text").html().replace("\20AC","")))'),
-'          },',
-'          {',
-'            dataType: ''json'',',
-'            success: function(data) {',
-'                apex.message.showPageSuccess(''Invoice saved.'');  ',
-'               /* $("#shoppingCartList").html("");',
-'                sumTotal();',
-'                addedItems = [];',
-'                $("#discount_type").html("");',
-unistr('                $("#right .u-success-text").html("\20AC -0.00");*/'),
-'                resetCart();',
-'            }',
-' });'))
+'save_invoice($(this.triggeringElement).attr(''id'').replace(''_but'',''''));',
+''))
 );
 wwv_flow_imp_page.create_page_da_action(
- p_id=>wwv_flow_imp.id(3117054001821191050)
-,p_event_id=>wwv_flow_imp.id(37888820457351084842)
+ p_id=>wwv_flow_imp.id(3115651486834728391)
+,p_event_id=>wwv_flow_imp.id(37887417942364622183)
 ,p_event_result=>'TRUE'
 ,p_action_sequence=>20
 ,p_execute_on_page_init=>'N'
 ,p_action=>'NATIVE_REFRESH'
 ,p_affected_elements_type=>'REGION'
-,p_affected_region_id=>wwv_flow_imp.id(37834346166500066003)
+,p_affected_region_id=>wwv_flow_imp.id(37832943651513603344)
 );
 wwv_flow_imp_page.create_page_da_event(
- p_id=>wwv_flow_imp.id(971217486706734201)
+ p_id=>wwv_flow_imp.id(969814971720271542)
 ,p_name=>'show foods'
 ,p_event_sequence=>90
 ,p_triggering_element_type=>'BUTTON'
-,p_triggering_button_id=>wwv_flow_imp.id(37888821289728084850)
+,p_triggering_button_id=>wwv_flow_imp.id(37887418774741622191)
 ,p_bind_type=>'live'
 ,p_bind_event_type=>'click'
 );
 wwv_flow_imp_page.create_page_da_action(
- p_id=>wwv_flow_imp.id(971217511849734202)
-,p_event_id=>wwv_flow_imp.id(971217486706734201)
+ p_id=>wwv_flow_imp.id(969814996863271543)
+,p_event_id=>wwv_flow_imp.id(969814971720271542)
 ,p_event_result=>'TRUE'
 ,p_action_sequence=>10
 ,p_execute_on_page_init=>'N'
@@ -1007,27 +1095,27 @@ wwv_flow_imp_page.create_page_da_action(
 ''))
 );
 wwv_flow_imp_page.create_page_da_action(
- p_id=>wwv_flow_imp.id(971217986661734206)
-,p_event_id=>wwv_flow_imp.id(971217486706734201)
+ p_id=>wwv_flow_imp.id(969815471675271547)
+,p_event_id=>wwv_flow_imp.id(969814971720271542)
 ,p_event_result=>'TRUE'
 ,p_action_sequence=>20
 ,p_execute_on_page_init=>'N'
 ,p_action=>'NATIVE_REFRESH'
 ,p_affected_elements_type=>'REGION'
-,p_affected_region_id=>wwv_flow_imp.id(37834346166500066003)
+,p_affected_region_id=>wwv_flow_imp.id(37832943651513603344)
 );
 wwv_flow_imp_page.create_page_da_event(
- p_id=>wwv_flow_imp.id(971217749427734204)
+ p_id=>wwv_flow_imp.id(969815234441271545)
 ,p_name=>'show drinks'
 ,p_event_sequence=>100
 ,p_triggering_element_type=>'BUTTON'
-,p_triggering_button_id=>wwv_flow_imp.id(37888821137107084849)
+,p_triggering_button_id=>wwv_flow_imp.id(37887418622120622190)
 ,p_bind_type=>'live'
 ,p_bind_event_type=>'click'
 );
 wwv_flow_imp_page.create_page_da_action(
- p_id=>wwv_flow_imp.id(971217862455734205)
-,p_event_id=>wwv_flow_imp.id(971217749427734204)
+ p_id=>wwv_flow_imp.id(969815347469271546)
+,p_event_id=>wwv_flow_imp.id(969815234441271545)
 ,p_event_result=>'TRUE'
 ,p_action_sequence=>10
 ,p_execute_on_page_init=>'N'
@@ -1046,37 +1134,37 @@ wwv_flow_imp_page.create_page_da_action(
 ''))
 );
 wwv_flow_imp_page.create_page_da_action(
- p_id=>wwv_flow_imp.id(971218034572734207)
-,p_event_id=>wwv_flow_imp.id(971217749427734204)
+ p_id=>wwv_flow_imp.id(969815519586271548)
+,p_event_id=>wwv_flow_imp.id(969815234441271545)
 ,p_event_result=>'TRUE'
 ,p_action_sequence=>20
 ,p_execute_on_page_init=>'N'
 ,p_action=>'NATIVE_REFRESH'
 ,p_affected_elements_type=>'REGION'
-,p_affected_region_id=>wwv_flow_imp.id(37834346166500066003)
+,p_affected_region_id=>wwv_flow_imp.id(37832943651513603344)
 );
 wwv_flow_imp_page.create_page_da_event(
- p_id=>wwv_flow_imp.id(971218261631734209)
+ p_id=>wwv_flow_imp.id(969815746645271550)
 ,p_name=>'Add Article'
 ,p_event_sequence=>110
 ,p_triggering_element_type=>'REGION'
-,p_triggering_region_id=>wwv_flow_imp.id(37834346166500066003)
+,p_triggering_region_id=>wwv_flow_imp.id(37832943651513603344)
 ,p_bind_type=>'bind'
 ,p_bind_event_type=>'apexafterclosedialog'
 );
 wwv_flow_imp_page.create_page_da_action(
- p_id=>wwv_flow_imp.id(971218304057734210)
-,p_event_id=>wwv_flow_imp.id(971218261631734209)
+ p_id=>wwv_flow_imp.id(969815789071271551)
+,p_event_id=>wwv_flow_imp.id(969815746645271550)
 ,p_event_result=>'TRUE'
 ,p_action_sequence=>10
 ,p_execute_on_page_init=>'N'
 ,p_action=>'NATIVE_REFRESH'
 ,p_affected_elements_type=>'REGION'
-,p_affected_region_id=>wwv_flow_imp.id(37834346166500066003)
+,p_affected_region_id=>wwv_flow_imp.id(37832943651513603344)
 );
 wwv_flow_imp_page.create_page_da_action(
- p_id=>wwv_flow_imp.id(971218473160734211)
-,p_event_id=>wwv_flow_imp.id(971218261631734209)
+ p_id=>wwv_flow_imp.id(969815958174271552)
+,p_event_id=>wwv_flow_imp.id(969815746645271550)
 ,p_event_result=>'TRUE'
 ,p_action_sequence=>20
 ,p_execute_on_page_init=>'N'
@@ -1089,19 +1177,19 @@ wwv_flow_imp_page.create_page_da_action(
 ,p_wait_for_result=>'Y'
 );
 wwv_flow_imp_page.create_page_da_event(
- p_id=>wwv_flow_imp.id(971218725189734214)
+ p_id=>wwv_flow_imp.id(969816210203271555)
 ,p_name=>'Add new Article to Cart'
 ,p_event_sequence=>120
 ,p_triggering_element_type=>'REGION'
-,p_triggering_region_id=>wwv_flow_imp.id(37834346166500066003)
+,p_triggering_region_id=>wwv_flow_imp.id(37832943651513603344)
 ,p_condition_element=>'P9_NEW_ARTICLE'
 ,p_triggering_condition_type=>'NOT_NULL'
 ,p_bind_type=>'live'
 ,p_bind_event_type=>'apexafterrefresh'
 );
 wwv_flow_imp_page.create_page_da_action(
- p_id=>wwv_flow_imp.id(971218825372734215)
-,p_event_id=>wwv_flow_imp.id(971218725189734214)
+ p_id=>wwv_flow_imp.id(969816310386271556)
+,p_event_id=>wwv_flow_imp.id(969816210203271555)
 ,p_event_result=>'TRUE'
 ,p_action_sequence=>10
 ,p_execute_on_page_init=>'N'
@@ -1112,19 +1200,20 @@ wwv_flow_imp_page.create_page_da_action(
 'addItem(id); '))
 );
 wwv_flow_imp_page.create_page_da_event(
- p_id=>wwv_flow_imp.id(971219368701734220)
+ p_id=>wwv_flow_imp.id(969816853715271561)
 ,p_name=>'add discount'
 ,p_event_sequence=>130
 ,p_triggering_element_type=>'BUTTON'
-,p_triggering_button_id=>wwv_flow_imp.id(37888819456880084832)
+,p_triggering_button_id=>wwv_flow_imp.id(37887416941893622173)
 ,p_bind_type=>'bind'
 ,p_bind_event_type=>'click'
+,p_display_when_type=>'NEVER'
 );
 wwv_flow_imp_page.create_page_da_action(
- p_id=>wwv_flow_imp.id(971219461589734221)
-,p_event_id=>wwv_flow_imp.id(971219368701734220)
+ p_id=>wwv_flow_imp.id(969816946603271562)
+,p_event_id=>wwv_flow_imp.id(969816853715271561)
 ,p_event_result=>'TRUE'
-,p_action_sequence=>10
+,p_action_sequence=>20
 ,p_execute_on_page_init=>'N'
 ,p_action=>'NATIVE_JAVASCRIPT_CODE'
 ,p_attribute_01=>wwv_flow_string.join(wwv_flow_t_varchar2(
@@ -1134,19 +1223,19 @@ wwv_flow_imp_page.create_page_da_action(
 'apex.navigation.redirect(newUrl);'))
 );
 wwv_flow_imp_page.create_page_da_event(
- p_id=>wwv_flow_imp.id(1353115653836638616)
+ p_id=>wwv_flow_imp.id(1351713138850175957)
 ,p_name=>'close discount'
 ,p_event_sequence=>140
 ,p_triggering_element_type=>'REGION'
-,p_triggering_region_id=>wwv_flow_imp.id(37888816862061084806)
+,p_triggering_region_id=>wwv_flow_imp.id(37887414347074622147)
 ,p_bind_type=>'live'
 ,p_bind_event_type=>'apexafterclosedialog'
 );
 wwv_flow_imp_page.create_page_da_action(
- p_id=>wwv_flow_imp.id(1353115759759638617)
-,p_event_id=>wwv_flow_imp.id(1353115653836638616)
+ p_id=>wwv_flow_imp.id(1351713244773175958)
+,p_event_id=>wwv_flow_imp.id(1351713138850175957)
 ,p_event_result=>'TRUE'
-,p_action_sequence=>10
+,p_action_sequence=>30
 ,p_execute_on_page_init=>'N'
 ,p_action=>'NATIVE_SET_VALUE'
 ,p_affected_elements_type=>'ITEM'
@@ -1157,16 +1246,33 @@ wwv_flow_imp_page.create_page_da_action(
 ,p_wait_for_result=>'Y'
 );
 wwv_flow_imp_page.create_page_da_action(
- p_id=>wwv_flow_imp.id(1353115868557638618)
-,p_event_id=>wwv_flow_imp.id(1353115653836638616)
+ p_id=>wwv_flow_imp.id(1351713353571175959)
+,p_event_id=>wwv_flow_imp.id(1351713138850175957)
 ,p_event_result=>'TRUE'
-,p_action_sequence=>20
+,p_action_sequence=>40
 ,p_execute_on_page_init=>'N'
 ,p_action=>'NATIVE_JAVASCRIPT_CODE'
-,p_attribute_01=>'calculateDiscount();'
+,p_affected_elements_type=>'ITEM'
+,p_affected_elements=>'P9_DISCOUNT_CAT'
+,p_attribute_01=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'sumTotal();',
+'let discount_cat = $v("P9_DISCOUNT").includes(''%'')? ''percent'':''cash'';',
+'$s("P9_DISCOUNT_CAT",discount_cat);'))
+);
+wwv_flow_imp_page.create_page_da_action(
+ p_id=>wwv_flow_imp.id(1182560457520477)
+,p_event_id=>wwv_flow_imp.id(1351713138850175957)
+,p_event_result=>'TRUE'
+,p_action_sequence=>50
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_EXECUTE_PLSQL_CODE'
+,p_attribute_01=>'NULL;'
+,p_attribute_02=>'P9_DISCOUNT,P9_DISCOUNT_CAT'
+,p_attribute_05=>'PLSQL'
+,p_wait_for_result=>'Y'
 );
 wwv_flow_imp_page.create_page_da_event(
- p_id=>wwv_flow_imp.id(1961176636739930526)
+ p_id=>wwv_flow_imp.id(1959774121753467867)
 ,p_name=>'Remove Item'
 ,p_event_sequence=>150
 ,p_triggering_element_type=>'JQUERY_SELECTOR'
@@ -1175,8 +1281,8 @@ wwv_flow_imp_page.create_page_da_event(
 ,p_bind_event_type=>'click'
 );
 wwv_flow_imp_page.create_page_da_action(
- p_id=>wwv_flow_imp.id(1961176748852930527)
-,p_event_id=>wwv_flow_imp.id(1961176636739930526)
+ p_id=>wwv_flow_imp.id(1959774233866467868)
+,p_event_id=>wwv_flow_imp.id(1959774121753467867)
 ,p_event_result=>'TRUE'
 ,p_action_sequence=>10
 ,p_execute_on_page_init=>'N'
@@ -1193,7 +1299,7 @@ wwv_flow_imp_page.create_page_da_action(
 ''))
 );
 wwv_flow_imp_page.create_page_process(
- p_id=>wwv_flow_imp.id(1961175138779930511)
+ p_id=>wwv_flow_imp.id(1959772623793467852)
 ,p_process_sequence=>10
 ,p_process_point=>'ON_DEMAND'
 ,p_process_type=>'NATIVE_PLSQL'
@@ -1212,34 +1318,46 @@ wwv_flow_imp_page.create_page_process(
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 );
 wwv_flow_imp_page.create_page_process(
- p_id=>wwv_flow_imp.id(37888820689432084844)
+ p_id=>wwv_flow_imp.id(37887418174445622185)
 ,p_process_sequence=>10
 ,p_process_point=>'ON_DEMAND'
 ,p_process_type=>'NATIVE_PLSQL'
 ,p_process_name=>'CREATE_BILLITEM'
 ,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'DECLARE',
-'   l_aid number;',
-'   l_qnt number;',
-'   l_prc number;',
-'   l_bid number;',
-'   l_total number;',
+'     l_scope    logger_logs.scope%TYPE := LOWER ($$plsql_unit) || ''.'' || get_proc_name_scope_context ($$plsql_unit, $$plsql_line);',
+'     l_params   logger.tab_param;',
 '   l_items varchar2(32767);',
 '   l_msg varchar2(500);',
 '   l_values apex_json.t_values;',
-'    l_data_count integer;',
-'   l_discount number;',
+'   l_data_count integer;',
+'   l_inv SC_INVOICE%ROWTYPE;',
+'   l_invitem SC_INVOICEITEM%ROWTYPE;',
+'   l_price NUMBER;',
 'BEGIN',
+'    logger.append_param (p_params => l_params, p_name => ''apex_application.g_x01'', p_val => apex_application.g_x01);',
+'    logger.append_param (p_params => l_params, p_name => ''apex_application.g_x02'', p_val => apex_application.g_x02);',
+'    logger.append_param (p_params => l_params, p_name => ''apex_application.g_x03'', p_val => apex_application.g_x03);',
+'    logger.append_param (p_params => l_params, p_name => ''apex_application.g_x04'', p_val => apex_application.g_x04);',
+'   -- l_price := REPLACE(apex_application.g_x02,''.'','','');',
+'    logger.append_param (p_params => l_params, p_name => ''l_price'', p_val => l_price);',
+'    ',
+'    logger.log_information (''saving invoice'',',
+'                            l_scope,',
+'                            NULL,',
+'                            l_params);',
 '   l_msg := ''nothing happend.'';',
 '   l_items := apex_application.g_x01;',
-'   l_total := apex_application.g_x02;',
-'   l_discount := apex_application.g_x03;',
-'/* CREATE THE BILL */',
+'   l_inv.total := apex_application.g_x02;',
+'   l_inv.discount := apex_application.g_x03;',
+'   l_inv.status := CASE WHEN apex_application.g_x04 = ''park'' THEN ''Open'' ELSE ''Closed'' END;',
+'   l_inv.payment_id := API_SMARTCASH.get_payment_id(REPLACE(apex_application.g_x04,''park'',''CASH''));',
+'/* CREATE THE INVOICE */',
 '    ',
 '  ',
-'    INSERT INTO sc_invoice(total,discount) VALUES(l_total,l_discount) RETURNING bid INTO l_bid;',
+'    API_SMARTCASH.SAVE_INVOICE(l_inv);',
 '     ',
-'     /* CREATE THE BILLITEMS ... */',
+'     /* CREATE THE INVOICEITEMS ... */',
 '   ',
 '    apex_json.parse (    ',
 '        p_values => l_values,    ',
@@ -1249,24 +1367,27 @@ wwv_flow_imp_page.create_page_process(
 '                        p_values => l_values,    ',
 '                        p_path  => ''Items'' );    ',
 '    ',
-'    FOR i in 1 .. l_data_count loop      ',
-'        l_aid := apex_json.get_varchar2( p_values => l_values, p_path  => ''Items[%d].id'',    p0      => i );',
-'        l_qnt := apex_json.get_varchar2( p_values => l_values, p_path  => ''Items[%d].qnt'',    p0      => i );',
-'        l_prc := apex_json.get_varchar2( p_values => l_values, p_path => ''Items[%d].qnt'', p0 => i);',
-'        INSERT INTO sc_invoiceitem(article_id,quantity,invoice_id,created,total) VALUES(l_aid,l_qnt,l_bid,systimestamp,l_prc); --RETURNING pid INTO l_pid;',
-'        UPDATE sc_article set freq = freq+1 where aid = l_aid;',
+'    FOR i in 1 .. l_data_count loop',
+'        l_invitem.id := NULL;',
+'        l_invitem.invoice_id := l_inv.id;      ',
+'        l_invitem.article_id := apex_json.get_varchar2( p_values => l_values, p_path  => ''Items[%d].id'',    p0      => i );',
+'        l_invitem.quantity := apex_json.get_varchar2( p_values => l_values, p_path  => ''Items[%d].qnt'',    p0      => i );',
+'       -- l_invitem.total := apex_json.get_varchar2( p_values => l_values, p_path => ''Items[%d].qnt'', p0 => i);',
+'        ',
+'        API_SMARTCASH.SAVE_INVOICEITEM(l_invitem);',
 '    END LOOP;',
 '    ',
 '    apex_json.open_object;',
 '    apex_json.write(''result'',''success'');',
-'    apex_json.write(''err'',SQLERRM||''------>msg:''||l_msg||'' l_products -->''||l_items||'' l_data_count->''||l_data_count||'' --bid:''||l_bid||'' l_aid-->''||l_aid||'' l_qnt--->''||l_qnt||'' l_total-->''||l_total);',
+'    --apex_json.write(''err'',SQLERRM||''------>msg:''||l_msg||'' l_products -->''||l_items||'' l_data_count->''||l_data_count);',
 '    --apex_json.write(''tid'',l_tid);',
 '    apex_json.close_object;',
 '',
 '    exception',
 '        when OTHERS then',
+'            logger.log_error(''invoice couldnt be saved'', ''CREATE_BILLITEM'',SQLERRM);',
 '            apex_json.open_object;',
-'            apex_json.write(''result'',SQLERRM||''------>msg:''||l_msg||'' l_products -->''||l_items||'' l_data_count->''||l_data_count||'' --bid:''||l_bid||'' l_aid-->''||l_aid||'' l_qnt--->''||l_qnt||'' l_total-->''||l_total);',
+'            apex_json.write(''result'',SQLERRM||''------>msg:''||l_msg||'' l_products -->''||l_items||'' l_data_count->''||l_data_count);',
 '            apex_json.close_object;',
 '',
 'END;'))

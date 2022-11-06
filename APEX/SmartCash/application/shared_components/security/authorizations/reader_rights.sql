@@ -1,7 +1,7 @@
 prompt --application/shared_components/security/authorizations/reader_rights
 begin
 wwv_flow_imp_shared.create_security_scheme(
- p_id=>wwv_flow_imp.id(37628521535430248803)
+ p_id=>wwv_flow_imp.id(37627119020443786144)
 ,p_name=>'Reader Rights'
 ,p_scheme_type=>'NATIVE_FUNCTION_BODY'
 ,p_attribute_01=>wwv_flow_string.join(wwv_flow_t_varchar2(

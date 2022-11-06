@@ -256,7 +256,7 @@ begin
     wwv_flow_imp.g_varchar2_table(92) := 'heet>'||wwv_flow.LF||
 '';
 wwv_flow_imp_shared.create_report_layout(
- p_id=>wwv_flow_imp.id(11471455988265253890)
+ p_id=>wwv_flow_imp.id(11470053473278791231)
 ,p_report_layout_name=>'daily_pdf_generic'
 ,p_report_layout_type=>'XSL_GENERIC'
 ,p_varchar2_table=>wwv_flow_imp.g_varchar2_table

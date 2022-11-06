@@ -1,0 +1,20 @@
+CREATE OR REPLACE TYPE MACDENIZ."SC_INVOICE_T" AS OBJECT
+(
+    ID NUMBER,
+    total NUMBER,
+    discount NUMBER,
+    payment_id NUMBER,
+    created DATE,
+	updated DATE,
+    customer_id NUMBER,
+    canceled VARCHAR2 (1),
+    cancel_reason VARCHAR2 (4000 BYTE),
+    CONSTRUCTOR FUNCTION SC_INVOICE_T
+        RETURN SELF AS RESULT,
+    MEMBER FUNCTION TO_STRING (in_display_attr_name VARCHAR2 DEFAULT 'N')
+        RETURN VARCHAR2,
+    MEMBER FUNCTION EQUALS (in_other IN SC_INVOICE_T)
+        RETURN BOOLEAN,
+    MEMBER PROCEDURE PRINT_ATTR (in_attr_name VARCHAR2)
+)
+/

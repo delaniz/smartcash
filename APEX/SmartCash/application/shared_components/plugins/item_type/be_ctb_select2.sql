@@ -1,7 +1,7 @@
 prompt --application/shared_components/plugins/item_type/be_ctb_select2
 begin
 wwv_flow_imp_shared.create_plugin(
- p_id=>wwv_flow_imp.id(668327414480299902)
+ p_id=>wwv_flow_imp.id(666924899493837243)
 ,p_plugin_type=>'ITEM TYPE'
 ,p_name=>'BE.CTB.SELECT2'
 ,p_display_name=>'Select2'
@@ -799,8 +799,8 @@ end;
 /
 begin
 wwv_flow_imp_shared.create_plugin_attribute(
- p_id=>wwv_flow_imp.id(657144493710473005)
-,p_plugin_id=>wwv_flow_imp.id(668327414480299902)
+ p_id=>wwv_flow_imp.id(655741978724010346)
+,p_plugin_id=>wwv_flow_imp.id(666924899493837243)
 ,p_attribute_scope=>'APPLICATION'
 ,p_attribute_sequence=>1
 ,p_display_sequence=>10
@@ -811,8 +811,8 @@ wwv_flow_imp_shared.create_plugin_attribute(
 ,p_help_text=>'The default message is "No results found".'
 );
 wwv_flow_imp_shared.create_plugin_attribute(
- p_id=>wwv_flow_imp.id(668386036213325108)
-,p_plugin_id=>wwv_flow_imp.id(668327414480299902)
+ p_id=>wwv_flow_imp.id(666983521226862449)
+,p_plugin_id=>wwv_flow_imp.id(666924899493837243)
 ,p_attribute_scope=>'APPLICATION'
 ,p_attribute_sequence=>2
 ,p_display_sequence=>20
@@ -823,8 +823,8 @@ wwv_flow_imp_shared.create_plugin_attribute(
 ,p_help_text=>'The default message is "Please enter x or more characters". It is possible to reference the substitution variables #TERM#, #MINLENGTH# and #REMAININGCHARS#.'
 );
 wwv_flow_imp_shared.create_plugin_attribute(
- p_id=>wwv_flow_imp.id(668390411756327460)
-,p_plugin_id=>wwv_flow_imp.id(668327414480299902)
+ p_id=>wwv_flow_imp.id(666987896769864801)
+,p_plugin_id=>wwv_flow_imp.id(666924899493837243)
 ,p_attribute_scope=>'APPLICATION'
 ,p_attribute_sequence=>3
 ,p_display_sequence=>30
@@ -835,8 +835,8 @@ wwv_flow_imp_shared.create_plugin_attribute(
 ,p_help_text=>'The default message is "You can only select x item(s)". It is possible to reference the substitution variable #MAXSIZE#.'
 );
 wwv_flow_imp_shared.create_plugin_attribute(
- p_id=>wwv_flow_imp.id(668394823877330918)
-,p_plugin_id=>wwv_flow_imp.id(668327414480299902)
+ p_id=>wwv_flow_imp.id(666992308890868259)
+,p_plugin_id=>wwv_flow_imp.id(666924899493837243)
 ,p_attribute_scope=>'APPLICATION'
 ,p_attribute_sequence=>4
 ,p_display_sequence=>40
@@ -847,8 +847,8 @@ wwv_flow_imp_shared.create_plugin_attribute(
 ,p_help_text=>'The default message is "Searching...".'
 );
 wwv_flow_imp_shared.create_plugin_attribute(
- p_id=>wwv_flow_imp.id(668399238075335035)
-,p_plugin_id=>wwv_flow_imp.id(668327414480299902)
+ p_id=>wwv_flow_imp.id(666996723088872376)
+,p_plugin_id=>wwv_flow_imp.id(666924899493837243)
 ,p_attribute_scope=>'APPLICATION'
 ,p_attribute_sequence=>5
 ,p_display_sequence=>50
@@ -859,8 +859,8 @@ wwv_flow_imp_shared.create_plugin_attribute(
 ,p_help_text=>'The name of the option group for records whose grouping column value is null.'
 );
 wwv_flow_imp_shared.create_plugin_attribute(
- p_id=>wwv_flow_imp.id(667858581163141567)
-,p_plugin_id=>wwv_flow_imp.id(668327414480299902)
+ p_id=>wwv_flow_imp.id(666456066176678908)
+,p_plugin_id=>wwv_flow_imp.id(666924899493837243)
 ,p_attribute_scope=>'APPLICATION'
 ,p_attribute_sequence=>6
 ,p_display_sequence=>45
@@ -871,8 +871,8 @@ wwv_flow_imp_shared.create_plugin_attribute(
 ,p_help_text=>'The default message is "Loading more results...".'
 );
 wwv_flow_imp_shared.create_plugin_attribute(
- p_id=>wwv_flow_imp.id(654549681679752722)
-,p_plugin_id=>wwv_flow_imp.id(668327414480299902)
+ p_id=>wwv_flow_imp.id(653147166693290063)
+,p_plugin_id=>wwv_flow_imp.id(666924899493837243)
 ,p_attribute_scope=>'APPLICATION'
 ,p_attribute_sequence=>7
 ,p_display_sequence=>5
@@ -885,29 +885,29 @@ wwv_flow_imp_shared.create_plugin_attribute(
 ,p_help_text=>'Choose how Select2 items should look like.'
 );
 wwv_flow_imp_shared.create_plugin_attr_value(
- p_id=>wwv_flow_imp.id(654550877366754718)
-,p_plugin_attribute_id=>wwv_flow_imp.id(654549681679752722)
+ p_id=>wwv_flow_imp.id(653148362380292059)
+,p_plugin_attribute_id=>wwv_flow_imp.id(653147166693290063)
 ,p_display_sequence=>10
 ,p_display_value=>'Select2'
 ,p_return_value=>'SELECT2'
 );
 wwv_flow_imp_shared.create_plugin_attr_value(
- p_id=>wwv_flow_imp.id(654551274562756022)
-,p_plugin_attribute_id=>wwv_flow_imp.id(654549681679752722)
+ p_id=>wwv_flow_imp.id(653148759576293363)
+,p_plugin_attribute_id=>wwv_flow_imp.id(653147166693290063)
 ,p_display_sequence=>20
 ,p_display_value=>'Select2 Classic'
 ,p_return_value=>'SELECT2_CLASSIC'
 );
 wwv_flow_imp_shared.create_plugin_attr_value(
- p_id=>wwv_flow_imp.id(654551672837756838)
-,p_plugin_attribute_id=>wwv_flow_imp.id(654549681679752722)
+ p_id=>wwv_flow_imp.id(653149157851294179)
+,p_plugin_attribute_id=>wwv_flow_imp.id(653147166693290063)
 ,p_display_sequence=>30
 ,p_display_value=>'Custom'
 ,p_return_value=>'CUSTOM'
 );
 wwv_flow_imp_shared.create_plugin_attribute(
- p_id=>wwv_flow_imp.id(656821587848477906)
-,p_plugin_id=>wwv_flow_imp.id(668327414480299902)
+ p_id=>wwv_flow_imp.id(655419072862015247)
+,p_plugin_id=>wwv_flow_imp.id(666924899493837243)
 ,p_attribute_scope=>'APPLICATION'
 ,p_attribute_sequence=>8
 ,p_display_sequence=>60
@@ -918,8 +918,8 @@ wwv_flow_imp_shared.create_plugin_attribute(
 ,p_help_text=>'The default message is "The results could not be loaded".'
 );
 wwv_flow_imp_shared.create_plugin_attribute(
- p_id=>wwv_flow_imp.id(656916593163819925)
-,p_plugin_id=>wwv_flow_imp.id(668327414480299902)
+ p_id=>wwv_flow_imp.id(655514078177357266)
+,p_plugin_id=>wwv_flow_imp.id(666924899493837243)
 ,p_attribute_scope=>'APPLICATION'
 ,p_attribute_sequence=>9
 ,p_display_sequence=>25
@@ -930,8 +930,8 @@ wwv_flow_imp_shared.create_plugin_attribute(
 ,p_help_text=>'The default message is "Please delete x characters". It is possible to reference the substitution variables #TERM#, #MAXLENGTH# and #OVERCHARS#.'
 );
 wwv_flow_imp_shared.create_plugin_attribute(
- p_id=>wwv_flow_imp.id(656921674795874054)
-,p_plugin_id=>wwv_flow_imp.id(668327414480299902)
+ p_id=>wwv_flow_imp.id(655519159809411395)
+,p_plugin_id=>wwv_flow_imp.id(666924899493837243)
 ,p_attribute_scope=>'APPLICATION'
 ,p_attribute_sequence=>10
 ,p_display_sequence=>6
@@ -939,15 +939,15 @@ wwv_flow_imp_shared.create_plugin_attribute(
 ,p_attribute_type=>'TEXT'
 ,p_is_required=>true
 ,p_is_translatable=>false
-,p_depending_on_attribute_id=>wwv_flow_imp.id(654549681679752722)
+,p_depending_on_attribute_id=>wwv_flow_imp.id(653147166693290063)
 ,p_depending_on_has_to_exist=>true
 ,p_depending_on_condition_type=>'IN_LIST'
 ,p_depending_on_expression=>'CUSTOM'
 ,p_help_text=>'The path to the custom CSS file to style the Select2 items. You are allowed to use substitution strings here.'
 );
 wwv_flow_imp_shared.create_plugin_attribute(
- p_id=>wwv_flow_imp.id(656924088369882859)
-,p_plugin_id=>wwv_flow_imp.id(668327414480299902)
+ p_id=>wwv_flow_imp.id(655521573383420200)
+,p_plugin_id=>wwv_flow_imp.id(666924899493837243)
 ,p_attribute_scope=>'APPLICATION'
 ,p_attribute_sequence=>11
 ,p_display_sequence=>7
@@ -955,15 +955,15 @@ wwv_flow_imp_shared.create_plugin_attribute(
 ,p_attribute_type=>'TEXT'
 ,p_is_required=>true
 ,p_is_translatable=>false
-,p_depending_on_attribute_id=>wwv_flow_imp.id(654549681679752722)
+,p_depending_on_attribute_id=>wwv_flow_imp.id(653147166693290063)
 ,p_depending_on_has_to_exist=>true
 ,p_depending_on_condition_type=>'IN_LIST'
 ,p_depending_on_expression=>'CUSTOM'
 ,p_help_text=>'The name of the custom CSS file to style the Select2 items. Do not add the .css extension in this field. You are allowed to use substitution strings here.'
 );
 wwv_flow_imp_shared.create_plugin_attribute(
- p_id=>wwv_flow_imp.id(668435218251348246)
-,p_plugin_id=>wwv_flow_imp.id(668327414480299902)
+ p_id=>wwv_flow_imp.id(667032703264885587)
+,p_plugin_id=>wwv_flow_imp.id(666924899493837243)
 ,p_attribute_scope=>'COMPONENT'
 ,p_attribute_sequence=>1
 ,p_display_sequence=>10
@@ -977,29 +977,29 @@ wwv_flow_imp_shared.create_plugin_attribute(
 ||' fly.'
 );
 wwv_flow_imp_shared.create_plugin_attr_value(
- p_id=>wwv_flow_imp.id(668439623446349775)
-,p_plugin_attribute_id=>wwv_flow_imp.id(668435218251348246)
+ p_id=>wwv_flow_imp.id(667037108459887116)
+,p_plugin_attribute_id=>wwv_flow_imp.id(667032703264885587)
 ,p_display_sequence=>10
 ,p_display_value=>'Single-value Select List'
 ,p_return_value=>'SINGLE'
 );
 wwv_flow_imp_shared.create_plugin_attr_value(
- p_id=>wwv_flow_imp.id(668443929679351539)
-,p_plugin_attribute_id=>wwv_flow_imp.id(668435218251348246)
+ p_id=>wwv_flow_imp.id(667041414692888880)
+,p_plugin_attribute_id=>wwv_flow_imp.id(667032703264885587)
 ,p_display_sequence=>20
 ,p_display_value=>'Multi-value Select List'
 ,p_return_value=>'MULTI'
 );
 wwv_flow_imp_shared.create_plugin_attr_value(
- p_id=>wwv_flow_imp.id(668448236952353681)
-,p_plugin_attribute_id=>wwv_flow_imp.id(668435218251348246)
+ p_id=>wwv_flow_imp.id(667045721965891022)
+,p_plugin_attribute_id=>wwv_flow_imp.id(667032703264885587)
 ,p_display_sequence=>30
 ,p_display_value=>'Tagging Support'
 ,p_return_value=>'TAG'
 );
 wwv_flow_imp_shared.create_plugin_attribute(
- p_id=>wwv_flow_imp.id(668460713543432049)
-,p_plugin_id=>wwv_flow_imp.id(668327414480299902)
+ p_id=>wwv_flow_imp.id(667058198556969390)
+,p_plugin_id=>wwv_flow_imp.id(666924899493837243)
 ,p_attribute_scope=>'COMPONENT'
 ,p_attribute_sequence=>2
 ,p_display_sequence=>20
@@ -1008,15 +1008,15 @@ wwv_flow_imp_shared.create_plugin_attribute(
 ,p_is_required=>false
 ,p_display_length=>8
 ,p_is_translatable=>false
-,p_depending_on_attribute_id=>wwv_flow_imp.id(668435218251348246)
+,p_depending_on_attribute_id=>wwv_flow_imp.id(667032703264885587)
 ,p_depending_on_has_to_exist=>true
 ,p_depending_on_condition_type=>'IN_LIST'
 ,p_depending_on_expression=>'SINGLE'
 ,p_help_text=>'The minimum number of results that must be populated in order to display the search field. A negative value will always hide the search field.'
 );
 wwv_flow_imp_shared.create_plugin_attribute(
- p_id=>wwv_flow_imp.id(668465127049435953)
-,p_plugin_id=>wwv_flow_imp.id(668327414480299902)
+ p_id=>wwv_flow_imp.id(667062612062973294)
+,p_plugin_id=>wwv_flow_imp.id(666924899493837243)
 ,p_attribute_scope=>'COMPONENT'
 ,p_attribute_sequence=>3
 ,p_display_sequence=>30
@@ -1028,8 +1028,8 @@ wwv_flow_imp_shared.create_plugin_attribute(
 ,p_help_text=>'The minimum length for a search term or a new option entered by the user.'
 );
 wwv_flow_imp_shared.create_plugin_attribute(
- p_id=>wwv_flow_imp.id(668469518176442884)
-,p_plugin_id=>wwv_flow_imp.id(668327414480299902)
+ p_id=>wwv_flow_imp.id(667067003189980225)
+,p_plugin_id=>wwv_flow_imp.id(666924899493837243)
 ,p_attribute_scope=>'COMPONENT'
 ,p_attribute_sequence=>4
 ,p_display_sequence=>40
@@ -1041,8 +1041,8 @@ wwv_flow_imp_shared.create_plugin_attribute(
 ,p_help_text=>'Maximum number of characters that can be entered for a search term or new option while tagging.'
 );
 wwv_flow_imp_shared.create_plugin_attribute(
- p_id=>wwv_flow_imp.id(668473934799447698)
-,p_plugin_id=>wwv_flow_imp.id(668327414480299902)
+ p_id=>wwv_flow_imp.id(667071419812985039)
+,p_plugin_id=>wwv_flow_imp.id(666924899493837243)
 ,p_attribute_scope=>'COMPONENT'
 ,p_attribute_sequence=>5
 ,p_display_sequence=>50
@@ -1051,15 +1051,15 @@ wwv_flow_imp_shared.create_plugin_attribute(
 ,p_is_required=>false
 ,p_display_length=>8
 ,p_is_translatable=>false
-,p_depending_on_attribute_id=>wwv_flow_imp.id(668435218251348246)
+,p_depending_on_attribute_id=>wwv_flow_imp.id(667032703264885587)
 ,p_depending_on_has_to_exist=>true
 ,p_depending_on_condition_type=>'IN_LIST'
 ,p_depending_on_expression=>'MULTI,TAG'
 ,p_help_text=>'The maximum number of items that can be selected.'
 );
 wwv_flow_imp_shared.create_plugin_attribute(
- p_id=>wwv_flow_imp.id(668478341033449495)
-,p_plugin_id=>wwv_flow_imp.id(668327414480299902)
+ p_id=>wwv_flow_imp.id(667075826046986836)
+,p_plugin_id=>wwv_flow_imp.id(666924899493837243)
 ,p_attribute_scope=>'COMPONENT'
 ,p_attribute_sequence=>6
 ,p_display_sequence=>60
@@ -1067,7 +1067,7 @@ wwv_flow_imp_shared.create_plugin_attribute(
 ,p_attribute_type=>'CHECKBOXES'
 ,p_is_required=>false
 ,p_is_translatable=>false
-,p_depending_on_attribute_id=>wwv_flow_imp.id(668435218251348246)
+,p_depending_on_attribute_id=>wwv_flow_imp.id(667032703264885587)
 ,p_depending_on_has_to_exist=>true
 ,p_depending_on_condition_type=>'IN_LIST'
 ,p_depending_on_expression=>'MULTI,TAG'
@@ -1075,15 +1075,15 @@ wwv_flow_imp_shared.create_plugin_attribute(
 ,p_help_text=>'Prevent the dropdown from closing when an item is selected, allowing for rapid selection of multiple items.'
 );
 wwv_flow_imp_shared.create_plugin_attr_value(
- p_id=>wwv_flow_imp.id(668482714152451174)
-,p_plugin_attribute_id=>wwv_flow_imp.id(668478341033449495)
+ p_id=>wwv_flow_imp.id(667080199165988515)
+,p_plugin_attribute_id=>wwv_flow_imp.id(667075826046986836)
 ,p_display_sequence=>10
 ,p_display_value=>' '
 ,p_return_value=>'Y'
 );
 wwv_flow_imp_shared.create_plugin_attribute(
- p_id=>wwv_flow_imp.id(668495233545456765)
-,p_plugin_id=>wwv_flow_imp.id(668327414480299902)
+ p_id=>wwv_flow_imp.id(667092718558994106)
+,p_plugin_id=>wwv_flow_imp.id(666924899493837243)
 ,p_attribute_scope=>'COMPONENT'
 ,p_attribute_sequence=>7
 ,p_display_sequence=>70
@@ -1095,15 +1095,15 @@ wwv_flow_imp_shared.create_plugin_attribute(
 ,p_help_text=>'Determines whether the currently highlighted option is selected when the select list loses focus.'
 );
 wwv_flow_imp_shared.create_plugin_attr_value(
- p_id=>wwv_flow_imp.id(668499637008457755)
-,p_plugin_attribute_id=>wwv_flow_imp.id(668495233545456765)
+ p_id=>wwv_flow_imp.id(667097122021995096)
+,p_plugin_attribute_id=>wwv_flow_imp.id(667092718558994106)
 ,p_display_sequence=>10
 ,p_display_value=>' '
 ,p_return_value=>'Y'
 );
 wwv_flow_imp_shared.create_plugin_attribute(
- p_id=>wwv_flow_imp.id(668512125711464003)
-,p_plugin_id=>wwv_flow_imp.id(668327414480299902)
+ p_id=>wwv_flow_imp.id(667109610725001344)
+,p_plugin_id=>wwv_flow_imp.id(666924899493837243)
 ,p_attribute_scope=>'COMPONENT'
 ,p_attribute_sequence=>8
 ,p_display_sequence=>80
@@ -1116,64 +1116,64 @@ wwv_flow_imp_shared.create_plugin_attribute(
 ,p_help_text=>'Defines how the search with the entered value should be performed.'
 );
 wwv_flow_imp_shared.create_plugin_attr_value(
- p_id=>wwv_flow_imp.id(668516531944465720)
-,p_plugin_attribute_id=>wwv_flow_imp.id(668512125711464003)
+ p_id=>wwv_flow_imp.id(667114016958003061)
+,p_plugin_attribute_id=>wwv_flow_imp.id(667109610725001344)
 ,p_display_sequence=>10
 ,p_display_value=>'Contains & Ignore Case'
 ,p_return_value=>'CIC'
 );
 wwv_flow_imp_shared.create_plugin_attr_value(
- p_id=>wwv_flow_imp.id(656912481431135192)
-,p_plugin_attribute_id=>wwv_flow_imp.id(668512125711464003)
+ p_id=>wwv_flow_imp.id(655509966444672533)
+,p_plugin_attribute_id=>wwv_flow_imp.id(667109610725001344)
 ,p_display_sequence=>15
 ,p_display_value=>'Contains & Ignore Case, with Diacritics'
 ,p_return_value=>'CICD'
 );
 wwv_flow_imp_shared.create_plugin_attr_value(
- p_id=>wwv_flow_imp.id(668520836446467043)
-,p_plugin_attribute_id=>wwv_flow_imp.id(668512125711464003)
+ p_id=>wwv_flow_imp.id(667118321460004384)
+,p_plugin_attribute_id=>wwv_flow_imp.id(667109610725001344)
 ,p_display_sequence=>20
 ,p_display_value=>'Contains & Case Sensitive'
 ,p_return_value=>'CCS'
 );
 wwv_flow_imp_shared.create_plugin_attr_value(
- p_id=>wwv_flow_imp.id(668525110604469012)
-,p_plugin_attribute_id=>wwv_flow_imp.id(668512125711464003)
+ p_id=>wwv_flow_imp.id(667122595618006353)
+,p_plugin_attribute_id=>wwv_flow_imp.id(667109610725001344)
 ,p_display_sequence=>30
 ,p_display_value=>'Exact & Ignore Case'
 ,p_return_value=>'EIC'
 );
 wwv_flow_imp_shared.create_plugin_attr_value(
- p_id=>wwv_flow_imp.id(668529419608471701)
-,p_plugin_attribute_id=>wwv_flow_imp.id(668512125711464003)
+ p_id=>wwv_flow_imp.id(667126904622009042)
+,p_plugin_attribute_id=>wwv_flow_imp.id(667109610725001344)
 ,p_display_sequence=>40
 ,p_display_value=>'Exact & Case Sensitive'
 ,p_return_value=>'ECS'
 );
 wwv_flow_imp_shared.create_plugin_attr_value(
- p_id=>wwv_flow_imp.id(668381903418173863)
-,p_plugin_attribute_id=>wwv_flow_imp.id(668512125711464003)
+ p_id=>wwv_flow_imp.id(666979388431711204)
+,p_plugin_attribute_id=>wwv_flow_imp.id(667109610725001344)
 ,p_display_sequence=>50
 ,p_display_value=>'Starts With & Ignore Case'
 ,p_return_value=>'SIC'
 );
 wwv_flow_imp_shared.create_plugin_attr_value(
- p_id=>wwv_flow_imp.id(668386177230175790)
-,p_plugin_attribute_id=>wwv_flow_imp.id(668512125711464003)
+ p_id=>wwv_flow_imp.id(666983662243713131)
+,p_plugin_attribute_id=>wwv_flow_imp.id(667109610725001344)
 ,p_display_sequence=>60
 ,p_display_value=>'Starts With & Case Sensitive'
 ,p_return_value=>'SCS'
 );
 wwv_flow_imp_shared.create_plugin_attr_value(
- p_id=>wwv_flow_imp.id(654543687509476601)
-,p_plugin_attribute_id=>wwv_flow_imp.id(668512125711464003)
+ p_id=>wwv_flow_imp.id(653141172523013942)
+,p_plugin_attribute_id=>wwv_flow_imp.id(667109610725001344)
 ,p_display_sequence=>70
 ,p_display_value=>'Multi-word Search'
 ,p_return_value=>'MW'
 );
 wwv_flow_imp_shared.create_plugin_attribute(
- p_id=>wwv_flow_imp.id(668541916276480143)
-,p_plugin_id=>wwv_flow_imp.id(668327414480299902)
+ p_id=>wwv_flow_imp.id(667139401290017484)
+,p_plugin_id=>wwv_flow_imp.id(666924899493837243)
 ,p_attribute_scope=>'COMPONENT'
 ,p_attribute_sequence=>9
 ,p_display_sequence=>90
@@ -1185,8 +1185,8 @@ wwv_flow_imp_shared.create_plugin_attribute(
 ,p_help_text=>'The name of the option group for records whose grouping column value is null. Overwrites the "Label for Null Option Group" attribute in component settings if filled in.'
 );
 wwv_flow_imp_shared.create_plugin_attribute(
- p_id=>wwv_flow_imp.id(668546333592485126)
-,p_plugin_id=>wwv_flow_imp.id(668327414480299902)
+ p_id=>wwv_flow_imp.id(667143818606022467)
+,p_plugin_id=>wwv_flow_imp.id(666924899493837243)
 ,p_attribute_scope=>'COMPONENT'
 ,p_attribute_sequence=>10
 ,p_display_sequence=>15
@@ -1207,8 +1207,8 @@ wwv_flow_imp_shared.create_plugin_attribute(
 '</ul>'))
 );
 wwv_flow_imp_shared.create_plugin_attribute(
- p_id=>wwv_flow_imp.id(668550740171487091)
-,p_plugin_id=>wwv_flow_imp.id(668327414480299902)
+ p_id=>wwv_flow_imp.id(667148225185024432)
+,p_plugin_id=>wwv_flow_imp.id(666924899493837243)
 ,p_attribute_scope=>'COMPONENT'
 ,p_attribute_sequence=>11
 ,p_display_sequence=>65
@@ -1216,7 +1216,7 @@ wwv_flow_imp_shared.create_plugin_attribute(
 ,p_attribute_type=>'CHECKBOXES'
 ,p_is_required=>false
 ,p_is_translatable=>false
-,p_depending_on_attribute_id=>wwv_flow_imp.id(668435218251348246)
+,p_depending_on_attribute_id=>wwv_flow_imp.id(667032703264885587)
 ,p_depending_on_has_to_exist=>true
 ,p_depending_on_condition_type=>'IN_LIST'
 ,p_depending_on_expression=>'MULTI,TAG'
@@ -1224,15 +1224,15 @@ wwv_flow_imp_shared.create_plugin_attribute(
 ,p_help_text=>'Allow drag and drop sorting of selected choices.'
 );
 wwv_flow_imp_shared.create_plugin_attr_value(
- p_id=>wwv_flow_imp.id(668555142249487625)
-,p_plugin_attribute_id=>wwv_flow_imp.id(668550740171487091)
+ p_id=>wwv_flow_imp.id(667152627263024966)
+,p_plugin_attribute_id=>wwv_flow_imp.id(667148225185024432)
 ,p_display_sequence=>10
 ,p_display_value=>' '
 ,p_return_value=>'Y'
 );
 wwv_flow_imp_shared.create_plugin_attribute(
- p_id=>wwv_flow_imp.id(656890688055676353)
-,p_plugin_id=>wwv_flow_imp.id(668327414480299902)
+ p_id=>wwv_flow_imp.id(655488173069213694)
+,p_plugin_id=>wwv_flow_imp.id(666924899493837243)
 ,p_attribute_scope=>'COMPONENT'
 ,p_attribute_sequence=>12
 ,p_display_sequence=>100
@@ -1241,7 +1241,7 @@ wwv_flow_imp_shared.create_plugin_attribute(
 ,p_is_required=>false
 ,p_display_length=>20
 ,p_is_translatable=>false
-,p_depending_on_attribute_id=>wwv_flow_imp.id(668435218251348246)
+,p_depending_on_attribute_id=>wwv_flow_imp.id(667032703264885587)
 ,p_depending_on_has_to_exist=>true
 ,p_depending_on_condition_type=>'IN_LIST'
 ,p_depending_on_expression=>'TAG'
@@ -1251,8 +1251,8 @@ wwv_flow_imp_shared.create_plugin_attribute(
 'The following example defines the comma and space characters as token separators: ['','', '' '']'))
 );
 wwv_flow_imp_shared.create_plugin_attribute(
- p_id=>wwv_flow_imp.id(649763965830353479)
-,p_plugin_id=>wwv_flow_imp.id(668327414480299902)
+ p_id=>wwv_flow_imp.id(648361450843890820)
+,p_plugin_id=>wwv_flow_imp.id(666924899493837243)
 ,p_attribute_scope=>'COMPONENT'
 ,p_attribute_sequence=>13
 ,p_display_sequence=>130
@@ -1268,8 +1268,8 @@ wwv_flow_imp_shared.create_plugin_attribute(
 'dropdownParent: $(''.ui-dialog''),'))
 );
 wwv_flow_imp_shared.create_plugin_attribute(
- p_id=>wwv_flow_imp.id(668062495099472806)
-,p_plugin_id=>wwv_flow_imp.id(668327414480299902)
+ p_id=>wwv_flow_imp.id(666659980113010147)
+,p_plugin_id=>wwv_flow_imp.id(666924899493837243)
 ,p_attribute_scope=>'COMPONENT'
 ,p_attribute_sequence=>14
 ,p_display_sequence=>110
@@ -1281,15 +1281,15 @@ wwv_flow_imp_shared.create_plugin_attribute(
 ,p_help_text=>'Decide whether you want to enable lazy loading. Lazy loading is an AJAX-driven technique that improves page performance by not executing the LOV query until the point at which it is actually needed.'
 );
 wwv_flow_imp_shared.create_plugin_attr_value(
- p_id=>wwv_flow_imp.id(668071698216473634)
-,p_plugin_attribute_id=>wwv_flow_imp.id(668062495099472806)
+ p_id=>wwv_flow_imp.id(666669183230010975)
+,p_plugin_attribute_id=>wwv_flow_imp.id(666659980113010147)
 ,p_display_sequence=>10
 ,p_display_value=>' '
 ,p_return_value=>'Y'
 );
 wwv_flow_imp_shared.create_plugin_attribute(
- p_id=>wwv_flow_imp.id(668101676155599759)
-,p_plugin_id=>wwv_flow_imp.id(668327414480299902)
+ p_id=>wwv_flow_imp.id(666699161169137100)
+,p_plugin_id=>wwv_flow_imp.id(666924899493837243)
 ,p_attribute_scope=>'COMPONENT'
 ,p_attribute_sequence=>15
 ,p_display_sequence=>120
@@ -1298,7 +1298,7 @@ wwv_flow_imp_shared.create_plugin_attribute(
 ,p_is_required=>false
 ,p_display_length=>8
 ,p_is_translatable=>false
-,p_depending_on_attribute_id=>wwv_flow_imp.id(668062495099472806)
+,p_depending_on_attribute_id=>wwv_flow_imp.id(666659980113010147)
 ,p_depending_on_has_to_exist=>true
 ,p_depending_on_condition_type=>'IN_LIST'
 ,p_depending_on_expression=>'Y'
@@ -1306,8 +1306,8 @@ wwv_flow_imp_shared.create_plugin_attribute(
 ||'ows will get populated immediately.'
 );
 wwv_flow_imp_shared.create_plugin_std_attribute(
- p_id=>wwv_flow_imp.id(647145140110930917)
-,p_plugin_id=>wwv_flow_imp.id(668327414480299902)
+ p_id=>wwv_flow_imp.id(645742625124468258)
+,p_plugin_id=>wwv_flow_imp.id(666924899493837243)
 ,p_name=>'LOV'
 ,p_sql_min_column_count=>2
 ,p_sql_max_column_count=>3
@@ -1331,56 +1331,56 @@ wwv_flow_imp_shared.create_plugin_std_attribute(
 '</pre>'))
 );
 wwv_flow_imp_shared.create_plugin_event(
- p_id=>wwv_flow_imp.id(656855369027884520)
-,p_plugin_id=>wwv_flow_imp.id(668327414480299902)
+ p_id=>wwv_flow_imp.id(655452854041421861)
+,p_plugin_id=>wwv_flow_imp.id(666924899493837243)
 ,p_name=>'slctchange'
 ,p_display_name=>'Change'
 );
 wwv_flow_imp_shared.create_plugin_event(
- p_id=>wwv_flow_imp.id(656855681043884522)
-,p_plugin_id=>wwv_flow_imp.id(668327414480299902)
+ p_id=>wwv_flow_imp.id(655453166057421863)
+,p_plugin_id=>wwv_flow_imp.id(666924899493837243)
 ,p_name=>'slctclose'
 ,p_display_name=>'Close'
 );
 wwv_flow_imp_shared.create_plugin_event(
- p_id=>wwv_flow_imp.id(656856085668884522)
-,p_plugin_id=>wwv_flow_imp.id(668327414480299902)
+ p_id=>wwv_flow_imp.id(655453570682421863)
+,p_plugin_id=>wwv_flow_imp.id(666924899493837243)
 ,p_name=>'slctclosing'
 ,p_display_name=>'Closing'
 );
 wwv_flow_imp_shared.create_plugin_event(
- p_id=>wwv_flow_imp.id(656856484130884523)
-,p_plugin_id=>wwv_flow_imp.id(668327414480299902)
+ p_id=>wwv_flow_imp.id(655453969144421864)
+,p_plugin_id=>wwv_flow_imp.id(666924899493837243)
 ,p_name=>'slctopen'
 ,p_display_name=>'Open'
 );
 wwv_flow_imp_shared.create_plugin_event(
- p_id=>wwv_flow_imp.id(656856868329884523)
-,p_plugin_id=>wwv_flow_imp.id(668327414480299902)
+ p_id=>wwv_flow_imp.id(655454353343421864)
+,p_plugin_id=>wwv_flow_imp.id(666924899493837243)
 ,p_name=>'slctopening'
 ,p_display_name=>'Opening'
 );
 wwv_flow_imp_shared.create_plugin_event(
- p_id=>wwv_flow_imp.id(656857276763884524)
-,p_plugin_id=>wwv_flow_imp.id(668327414480299902)
+ p_id=>wwv_flow_imp.id(655454761777421865)
+,p_plugin_id=>wwv_flow_imp.id(666924899493837243)
 ,p_name=>'slctselect'
 ,p_display_name=>'Select'
 );
 wwv_flow_imp_shared.create_plugin_event(
- p_id=>wwv_flow_imp.id(656857690615884524)
-,p_plugin_id=>wwv_flow_imp.id(668327414480299902)
+ p_id=>wwv_flow_imp.id(655455175629421865)
+,p_plugin_id=>wwv_flow_imp.id(666924899493837243)
 ,p_name=>'slctselecting'
 ,p_display_name=>'Selecting'
 );
 wwv_flow_imp_shared.create_plugin_event(
- p_id=>wwv_flow_imp.id(656858072505884525)
-,p_plugin_id=>wwv_flow_imp.id(668327414480299902)
+ p_id=>wwv_flow_imp.id(655455557519421866)
+,p_plugin_id=>wwv_flow_imp.id(666924899493837243)
 ,p_name=>'slctunselect'
 ,p_display_name=>'Unselect'
 );
 wwv_flow_imp_shared.create_plugin_event(
- p_id=>wwv_flow_imp.id(656858481329884525)
-,p_plugin_id=>wwv_flow_imp.id(668327414480299902)
+ p_id=>wwv_flow_imp.id(655455966343421866)
+,p_plugin_id=>wwv_flow_imp.id(666924899493837243)
 ,p_name=>'slctunselecting'
 ,p_display_name=>'Unselecting'
 );
@@ -1395,8 +1395,8 @@ end;
 /
 begin
 wwv_flow_imp_shared.create_plugin_file(
- p_id=>wwv_flow_imp.id(654554085228786011)
-,p_plugin_id=>wwv_flow_imp.id(668327414480299902)
+ p_id=>wwv_flow_imp.id(653151570242323352)
+,p_plugin_id=>wwv_flow_imp.id(666924899493837243)
 ,p_file_name=>'select2-classic.css'
 ,p_mime_type=>'text/css'
 ,p_file_content=>wwv_flow_imp.varchar2_to_blob(wwv_flow_imp.g_varchar2_table)
@@ -1562,8 +1562,8 @@ end;
 /
 begin
 wwv_flow_imp_shared.create_plugin_file(
- p_id=>wwv_flow_imp.id(656797583872112899)
-,p_plugin_id=>wwv_flow_imp.id(668327414480299902)
+ p_id=>wwv_flow_imp.id(655395068885650240)
+,p_plugin_id=>wwv_flow_imp.id(666924899493837243)
 ,p_file_name=>'select2.min.css'
 ,p_mime_type=>'text/css'
 ,p_file_content=>wwv_flow_imp.varchar2_to_blob(wwv_flow_imp.g_varchar2_table)
@@ -2328,8 +2328,8 @@ end;
 /
 begin
 wwv_flow_imp_shared.create_plugin_file(
- p_id=>wwv_flow_imp.id(656798290901118368)
-,p_plugin_id=>wwv_flow_imp.id(668327414480299902)
+ p_id=>wwv_flow_imp.id(655395775914655709)
+,p_plugin_id=>wwv_flow_imp.id(666924899493837243)
 ,p_file_name=>'select2.full.min.js'
 ,p_mime_type=>'application/javascript'
 ,p_file_content=>wwv_flow_imp.varchar2_to_blob(wwv_flow_imp.g_varchar2_table)
@@ -2357,8 +2357,8 @@ end;
 /
 begin
 wwv_flow_imp_shared.create_plugin_file(
- p_id=>wwv_flow_imp.id(656873168034203859)
-,p_plugin_id=>wwv_flow_imp.id(668327414480299902)
+ p_id=>wwv_flow_imp.id(655470653047741200)
+,p_plugin_id=>wwv_flow_imp.id(666924899493837243)
 ,p_file_name=>'select2-apex.js'
 ,p_mime_type=>'application/javascript'
 ,p_file_content=>wwv_flow_imp.varchar2_to_blob(wwv_flow_imp.g_varchar2_table)

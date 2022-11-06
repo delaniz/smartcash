@@ -1,13 +1,13 @@
 prompt --application/shared_components/navigation/lists/activity_reports
 begin
 wwv_flow_imp_shared.create_list(
- p_id=>wwv_flow_imp.id(37628685910634249181)
+ p_id=>wwv_flow_imp.id(37627283395647786522)
 ,p_name=>'Activity Reports'
 ,p_list_status=>'PUBLIC'
-,p_required_patch=>wwv_flow_imp.id(37628518822287248800)
+,p_required_patch=>wwv_flow_imp.id(37627116307300786141)
 );
 wwv_flow_imp_shared.create_list_item(
- p_id=>wwv_flow_imp.id(37628686321818249182)
+ p_id=>wwv_flow_imp.id(37627283806831786523)
 ,p_list_item_display_sequence=>10
 ,p_list_item_link_text=>'Dashboard'
 ,p_list_item_link_target=>'f?p=&APP_ID.:10030:&SESSION.::&DEBUG.:10030:::'
@@ -16,7 +16,7 @@ wwv_flow_imp_shared.create_list_item(
 ,p_list_item_current_type=>'TARGET_PAGE'
 );
 wwv_flow_imp_shared.create_list_item(
- p_id=>wwv_flow_imp.id(37628686771991249182)
+ p_id=>wwv_flow_imp.id(37627284257004786523)
 ,p_list_item_display_sequence=>20
 ,p_list_item_link_text=>'Top Users'
 ,p_list_item_link_target=>'f?p=&APP_ID.:10031:&SESSION.::&DEBUG.:10031:::'
@@ -25,7 +25,7 @@ wwv_flow_imp_shared.create_list_item(
 ,p_list_item_current_type=>'TARGET_PAGE'
 );
 wwv_flow_imp_shared.create_list_item(
- p_id=>wwv_flow_imp.id(37628687125249249182)
+ p_id=>wwv_flow_imp.id(37627284610262786523)
 ,p_list_item_display_sequence=>30
 ,p_list_item_link_text=>'Application Error Log'
 ,p_list_item_link_target=>'f?p=&APP_ID.:10032:&SESSION.::&DEBUG.:10032:::'
@@ -34,7 +34,7 @@ wwv_flow_imp_shared.create_list_item(
 ,p_list_item_current_type=>'TARGET_PAGE'
 );
 wwv_flow_imp_shared.create_list_item(
- p_id=>wwv_flow_imp.id(37628687548136249182)
+ p_id=>wwv_flow_imp.id(37627285033149786523)
 ,p_list_item_display_sequence=>40
 ,p_list_item_link_text=>'Page Performance'
 ,p_list_item_link_target=>'f?p=&APP_ID.:10033:&SESSION.::&DEBUG.:10033:::'
@@ -43,7 +43,7 @@ wwv_flow_imp_shared.create_list_item(
 ,p_list_item_current_type=>'TARGET_PAGE'
 );
 wwv_flow_imp_shared.create_list_item(
- p_id=>wwv_flow_imp.id(37628687902473249183)
+ p_id=>wwv_flow_imp.id(37627285387486786524)
 ,p_list_item_display_sequence=>50
 ,p_list_item_link_text=>'Page Views'
 ,p_list_item_link_target=>'f?p=&APP_ID.:10034:&SESSION.::&DEBUG.:RIR,10034:::'

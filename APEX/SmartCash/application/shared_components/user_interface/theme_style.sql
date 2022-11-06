@@ -1,7 +1,7 @@
 prompt --application/shared_components/user_interface/theme_style
 begin
 wwv_flow_imp_shared.create_theme_style(
- p_id=>wwv_flow_imp.id(37628495329853248778)
+ p_id=>wwv_flow_imp.id(37627092814866786119)
 ,p_theme_id=>42
 ,p_name=>'Vista'
 ,p_css_file_urls=>'#THEME_IMAGES#css/Vista#MIN#.css?v=#APEX_VERSION#'
@@ -12,10 +12,10 @@ wwv_flow_imp_shared.create_theme_style(
 ,p_reference_id=>4007676303523989775
 );
 wwv_flow_imp_shared.create_theme_style(
- p_id=>wwv_flow_imp.id(37628495588864248778)
+ p_id=>wwv_flow_imp.id(37627093073877786119)
 ,p_theme_id=>42
 ,p_name=>'Vita'
-,p_is_current=>true
+,p_is_current=>false
 ,p_is_public=>true
 ,p_is_accessible=>true
 ,p_theme_roller_input_file_urls=>'#THEME_IMAGES#less/theme/Vita.less'
@@ -24,7 +24,7 @@ wwv_flow_imp_shared.create_theme_style(
 ,p_reference_id=>2719875314571594493
 );
 wwv_flow_imp_shared.create_theme_style(
- p_id=>wwv_flow_imp.id(37628495772753248778)
+ p_id=>wwv_flow_imp.id(37627093257766786119)
 ,p_theme_id=>42
 ,p_name=>'Vita - Dark'
 ,p_is_current=>false
@@ -36,7 +36,7 @@ wwv_flow_imp_shared.create_theme_style(
 ,p_reference_id=>3543348412015319650
 );
 wwv_flow_imp_shared.create_theme_style(
- p_id=>wwv_flow_imp.id(37628495942359248778)
+ p_id=>wwv_flow_imp.id(37627093427372786119)
 ,p_theme_id=>42
 ,p_name=>'Vita - Red'
 ,p_is_current=>false
@@ -48,10 +48,10 @@ wwv_flow_imp_shared.create_theme_style(
 ,p_reference_id=>1938457712423918173
 );
 wwv_flow_imp_shared.create_theme_style(
- p_id=>wwv_flow_imp.id(37628496180981248778)
+ p_id=>wwv_flow_imp.id(37627093665994786119)
 ,p_theme_id=>42
 ,p_name=>'Vita - Slate'
-,p_is_current=>false
+,p_is_current=>true
 ,p_is_public=>true
 ,p_is_accessible=>false
 ,p_theme_roller_input_file_urls=>'#THEME_IMAGES#less/theme/Vita-Slate.less'

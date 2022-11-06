@@ -1,7 +1,7 @@
 prompt --application/shared_components/user_interface/templates/region/tabs_container
 begin
 wwv_flow_imp_shared.create_plug_template(
- p_id=>wwv_flow_imp.id(37628443326103248738)
+ p_id=>wwv_flow_imp.id(37627040811116786079)
 ,p_layout=>'TABLE'
 ,p_template=>wwv_flow_string.join(wwv_flow_t_varchar2(
 '<div class="t-TabsRegion #REGION_CSS_CLASSES# apex-tabs-region" #REGION_ATTRIBUTES# id="#REGION_STATIC_ID#">',
@@ -26,8 +26,8 @@ wwv_flow_imp_shared.create_plug_template(
 ,p_translate_this_template=>'N'
 );
 wwv_flow_imp_shared.create_plug_tmpl_display_point(
- p_id=>wwv_flow_imp.id(37628443665154248738)
-,p_plug_template_id=>wwv_flow_imp.id(37628443326103248738)
+ p_id=>wwv_flow_imp.id(37627041150167786079)
+,p_plug_template_id=>wwv_flow_imp.id(37627040811116786079)
 ,p_name=>'Region Body'
 ,p_placeholder=>'BODY'
 ,p_has_grid_support=>true
@@ -37,8 +37,8 @@ wwv_flow_imp_shared.create_plug_tmpl_display_point(
 ,p_glv_new_row=>true
 );
 wwv_flow_imp_shared.create_plug_tmpl_display_point(
- p_id=>wwv_flow_imp.id(37628443930038248738)
-,p_plug_template_id=>wwv_flow_imp.id(37628443326103248738)
+ p_id=>wwv_flow_imp.id(37627041415051786079)
+,p_plug_template_id=>wwv_flow_imp.id(37627040811116786079)
 ,p_name=>'Tabs'
 ,p_placeholder=>'SUB_REGIONS'
 ,p_has_grid_support=>false

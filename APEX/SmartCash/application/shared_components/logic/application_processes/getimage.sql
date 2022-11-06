@@ -1,17 +1,21 @@
 prompt --application/shared_components/logic/application_processes/getimage
 begin
 wwv_flow_imp_shared.create_flow_process(
- p_id=>wwv_flow_imp.id(37821937256791620447)
+ p_id=>wwv_flow_imp.id(37820534741805157788)
 ,p_process_sequence=>1
 ,p_process_point=>'ON_DEMAND'
 ,p_process_type=>'NATIVE_PLSQL'
 ,p_process_name=>'GETIMAGE'
 ,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'begin',
-'    for c1 in (select *',
-'                 from sc_img',
-'                where iid = CASE WHEN :FILE_ID is null then ''0''',
-'                                 ELSE :FILE_ID END) loop',
+'    for c1 in (select * ',
+'                from sc_img',
+'                where ID = CASE WHEN (select count(*)',
+'                                        from sc_img',
+'                                        where ID = :FILE_ID)=0 ',
+'                                THEN ''0'' ',
+'                                ELSE GREATEST(COALESCE(:FILE_ID,''0''),0)',
+'                            END) loop',
 '        --',
 '        sys.htp.init;',
 '        sys.owa_util.mime_header( c1.mimetype, FALSE );',

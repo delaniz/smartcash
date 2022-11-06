@@ -14,31 +14,31 @@ whenever sqlerror exit sql.sqlcode rollback
 begin
 wwv_flow_imp.import_begin (
  p_version_yyyy_mm_dd=>'2022.04.12'
-,p_release=>'22.1.0-16'
+,p_release=>'22.1.4'
 ,p_default_workspace_id=>15726592515012468
-,p_default_application_id=>676496
-,p_default_id_offset=>56312848539360074319
+,p_default_application_id=>201
+,p_default_id_offset=>9379846581663957
 ,p_default_owner=>'PLAYGROUND'
 );
 end;
 /
  
-prompt APPLICATION 676496 - smartCash
+prompt APPLICATION 201 - smartCash
 --
 -- Application Export:
---   Application:     676496
+--   Application:     201
 --   Name:            smartCash
---   Date and Time:   14:19 Monday April 18, 2022
---   Exported By:     D.KALDI@ME.COM
+--   Date and Time:   14:04 Mittwoch November 2, 2022
+--   Exported By:     MACDENIZ
 --   Flashback:       0
 --   Export Type:     Application Export
---     Pages:                     36
---       Items:                   71
---       Validations:              1
---       Processes:               39
---       Regions:                 99
---       Buttons:                 83
---       Dynamic Actions:         78
+--     Pages:                     60
+--       Items:                  299
+--       Validations:             21
+--       Processes:               93
+--       Regions:                162
+--       Buttons:                133
+--       Dynamic Actions:        126
 --     Shared Components:
 --       Logic:
 --         Items:                  1
@@ -48,7 +48,7 @@ prompt APPLICATION 676496 - smartCash
 --       Navigation:
 --         Lists:                  8
 --         Breadcrumbs:            1
---           Entries:              4
+--           Entries:              2
 --       Security:
 --         Authentication:         1
 --         Authorization:          3
@@ -63,18 +63,18 @@ prompt APPLICATION 676496 - smartCash
 --           Popup LOV:            1
 --           Calendar:             1
 --           Breadcrumb:           1
---           Button:               4
+--           Button:               3
 --           Report:              10
 --         LOVs:                   5
 --         Shortcuts:              1
---         Plug-ins:               1
+--         Plug-ins:               3
 --       Globalization:
 --       Reports:
 --         Queries:                1
 --         Layouts:                2
 --       E-Mail:
 --     Supporting Objects:  Included
---   Version:         22.1.0-16
---   Instance ID:     63113759365424
+--   Version:         22.1.4
+--   Instance ID:     7875569070047921
 --
 

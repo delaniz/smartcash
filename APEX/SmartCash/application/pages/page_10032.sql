@@ -2,15 +2,15 @@ prompt --application/pages/page_10032
 begin
 wwv_flow_imp_page.create_page(
  p_id=>10032
-,p_user_interface_id=>wwv_flow_imp.id(37628517236709248794)
+,p_user_interface_id=>wwv_flow_imp.id(37627114721722786135)
 ,p_name=>'Application Error Log'
 ,p_page_mode=>'MODAL'
 ,p_step_title=>'Application Error Log'
 ,p_autocomplete_on_off=>'OFF'
-,p_group_id=>wwv_flow_imp.id(37628523347971248806)
+,p_group_id=>wwv_flow_imp.id(37627120832984786147)
 ,p_page_template_options=>'#DEFAULT#:ui-dialog--stretch:t-Dialog--noPadding'
-,p_required_role=>wwv_flow_imp.id(37628521478795248803)
-,p_required_patch=>wwv_flow_imp.id(37628518822287248800)
+,p_required_role=>wwv_flow_imp.id(37627118963808786144)
+,p_required_patch=>wwv_flow_imp.id(37627116307300786141)
 ,p_help_text=>wwv_flow_string.join(wwv_flow_t_varchar2(
 '<p>This page provides an interactive report of all unexpected errors logged by this application.</p>',
 '<p>Click on the column headings to sort and filter data, or click on the <strong>Actions</strong> button to customize column display and many additional advanced features. Click the <strong>Reset</strong> button to reset the interactive report back t'
@@ -20,10 +20,10 @@ wwv_flow_imp_page.create_page(
 ,p_last_upd_yyyymmddhh24miss=>'20191015103954'
 );
 wwv_flow_imp_page.create_page_plug(
- p_id=>wwv_flow_imp.id(37628596541631248902)
+ p_id=>wwv_flow_imp.id(37627194026644786243)
 ,p_plug_name=>'Application Error Log'
 ,p_region_template_options=>'#DEFAULT#:t-IRR-region--noBorders'
-,p_plug_template=>wwv_flow_imp.id(37628435345729248733)
+,p_plug_template=>wwv_flow_imp.id(37627032830742786074)
 ,p_plug_display_sequence=>10
 ,p_query_type=>'SQL'
 ,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
@@ -40,7 +40,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_source_type=>'NATIVE_IR'
 );
 wwv_flow_imp_page.create_worksheet(
- p_id=>wwv_flow_imp.id(37628597430520248903)
+ p_id=>wwv_flow_imp.id(37627194915533786244)
 ,p_name=>'Application Error Log'
 ,p_max_row_count=>'1000000'
 ,p_max_row_count_message=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
@@ -58,7 +58,7 @@ wwv_flow_imp_page.create_worksheet(
 ,p_internal_uid=>37628597430520248903
 );
 wwv_flow_imp_page.create_worksheet_column(
- p_id=>wwv_flow_imp.id(37628597578427248903)
+ p_id=>wwv_flow_imp.id(37627195063440786244)
 ,p_db_column_name=>'STEP_ID'
 ,p_display_order=>10
 ,p_column_identifier=>'A'
@@ -70,7 +70,7 @@ wwv_flow_imp_page.create_worksheet_column(
 ,p_use_as_row_header=>'N'
 );
 wwv_flow_imp_page.create_worksheet_column(
- p_id=>wwv_flow_imp.id(37628597991293248903)
+ p_id=>wwv_flow_imp.id(37627195476306786244)
 ,p_db_column_name=>'USERID'
 ,p_display_order=>20
 ,p_column_identifier=>'B'
@@ -81,7 +81,7 @@ wwv_flow_imp_page.create_worksheet_column(
 ,p_use_as_row_header=>'N'
 );
 wwv_flow_imp_page.create_worksheet_column(
- p_id=>wwv_flow_imp.id(37628598348368248904)
+ p_id=>wwv_flow_imp.id(37627195833381786245)
 ,p_db_column_name=>'ERR_TIME'
 ,p_display_order=>30
 ,p_column_identifier=>'C'
@@ -93,7 +93,7 @@ wwv_flow_imp_page.create_worksheet_column(
 ,p_use_as_row_header=>'N'
 );
 wwv_flow_imp_page.create_worksheet_column(
- p_id=>wwv_flow_imp.id(37628598701172248905)
+ p_id=>wwv_flow_imp.id(37627196186185786246)
 ,p_db_column_name=>'SQLERRM'
 ,p_display_order=>40
 ,p_column_identifier=>'D'
@@ -104,7 +104,7 @@ wwv_flow_imp_page.create_worksheet_column(
 ,p_use_as_row_header=>'N'
 );
 wwv_flow_imp_page.create_worksheet_column(
- p_id=>wwv_flow_imp.id(37628599181013248905)
+ p_id=>wwv_flow_imp.id(37627196666026786246)
 ,p_db_column_name=>'SQLERRM_COMPONENT_TYPE'
 ,p_display_order=>50
 ,p_column_identifier=>'E'
@@ -115,7 +115,7 @@ wwv_flow_imp_page.create_worksheet_column(
 ,p_use_as_row_header=>'N'
 );
 wwv_flow_imp_page.create_worksheet_column(
- p_id=>wwv_flow_imp.id(37628599553023248905)
+ p_id=>wwv_flow_imp.id(37627197038036786246)
 ,p_db_column_name=>'SQLERRM_COMPONENT_NAME'
 ,p_display_order=>60
 ,p_column_identifier=>'F'
@@ -126,7 +126,7 @@ wwv_flow_imp_page.create_worksheet_column(
 ,p_use_as_row_header=>'N'
 );
 wwv_flow_imp_page.create_worksheet_rpt(
- p_id=>wwv_flow_imp.id(37628600258038248906)
+ p_id=>wwv_flow_imp.id(37627197743051786247)
 ,p_application_user=>'APXWS_DEFAULT'
 ,p_report_seq=>10
 ,p_report_alias=>'376286003'
@@ -137,13 +137,13 @@ wwv_flow_imp_page.create_worksheet_rpt(
 ,p_sort_direction_1=>'DESC'
 );
 wwv_flow_imp_page.create_page_button(
- p_id=>wwv_flow_imp.id(37628601180503248907)
+ p_id=>wwv_flow_imp.id(37627198665516786248)
 ,p_button_sequence=>20
-,p_button_plug_id=>wwv_flow_imp.id(37628596541631248902)
+,p_button_plug_id=>wwv_flow_imp.id(37627194026644786243)
 ,p_button_name=>'RESET_REPORT'
 ,p_button_action=>'REDIRECT_PAGE'
 ,p_button_template_options=>'t-Button--iconLeft'
-,p_button_template_id=>wwv_flow_imp.id(37628493689171248776)
+,p_button_template_id=>wwv_flow_imp.id(37627091174184786117)
 ,p_button_image_alt=>'Reset'
 ,p_button_position=>'RIGHT_OF_IR_SEARCH_BAR'
 ,p_button_redirect_url=>'f?p=&APP_ID.:&APP_PAGE_ID.:&SESSION.::&DEBUG.:&APP_PAGE_ID.,RIR::'

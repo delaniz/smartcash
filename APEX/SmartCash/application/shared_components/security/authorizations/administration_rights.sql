@@ -1,7 +1,7 @@
 prompt --application/shared_components/security/authorizations/administration_rights
 begin
 wwv_flow_imp_shared.create_security_scheme(
- p_id=>wwv_flow_imp.id(37628521478795248803)
+ p_id=>wwv_flow_imp.id(37627118963808786144)
 ,p_name=>'Administration Rights'
 ,p_scheme_type=>'NATIVE_IS_IN_GROUP'
 ,p_attribute_01=>'Administrator'
